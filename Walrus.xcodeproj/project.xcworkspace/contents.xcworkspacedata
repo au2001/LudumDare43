@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Walrus2.xcodeproj">
+      location = "self:/Users/aurelien/Desktop/Autres/Walrus2/Walrus.xcodeproj">
    </FileRef>
 </Workspace>
