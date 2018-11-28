@@ -28,19 +28,27 @@ class Sprite {
     }
 
     func getMinX() -> Int {
-        return -anchorX
+        return -self.anchorX
     }
 
     func getMinY() -> Int {
-        return -anchorY
+        return -self.anchorY
     }
 
     func getMaxX() -> Int {
-        return self.getWidth() - 1 - self.anchorX
+        let width = self.getWidth()
+        if width <= 0 {
+            return self.getMinX()
+        }
+        return width - self.anchorX - 1
     }
 
     func getMaxY() -> Int {
-        return self.getHeight() - 1 - anchorY
+        let height = self.getHeight()
+        if height <= 0 {
+            return self.getMinY()
+        }
+        return height - self.anchorY - 1
     }
 
     func getColor(x: Int, y: Int) -> CGColor {
