@@ -25,18 +25,17 @@ class Entity {
             return
         }
 
-        // TODO: Calculate which rectangle changed
-        let x1 = min(0, 0)
-        let x2 = max(0, 1)
-        let y1 = min(0, 0)
-        let y2 = max(0, 1)
+        var pixels: Set<Pixel> = []
 
-        let rect = CGRect(x: x1, y: y1, width: x2 - x1, height: y2 - y1)
+        for pixel in sprite.getHitBox(threshold: 0) {
+            pixels.insert(Pixel(x: pixel.x + previousX, y: pixel.y + previousY))
+            pixels.insert(Pixel(x: pixel.x + newX, y: pixel.y + newY))
+        }
 
         self.previousX = newX
         self.previousY = newY
 
-        game.render(rect: rect)
+        game.render(pixels: pixels)
     }
 
 }

@@ -61,8 +61,18 @@ class Sprite {
         return self.pixels[y][x]
     }
 
-    func isHitBox(x: Int, y: Int) -> Bool {
-        return self.getColor(x: x, y: y).alpha >= 0.5
+    func getHitBox(threshold: Double = 0.5) -> Set<Pixel> {
+        var hitbox: Set<Pixel> = []
+
+        for x in self.getMinX()...self.getMaxX() {
+            for y in self.getMinY()...self.getMaxY() {
+                if self.getColor(x: x, y: y).alpha > CGFloat(threshold) {
+                    hitbox.insert(Pixel(x: x, y: y))
+                }
+            }
+        }
+
+        return hitbox
     }
 
 }
