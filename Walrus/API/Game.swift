@@ -120,18 +120,43 @@ class Game {
         self.painting = true
 
         DispatchQueue.main.async {
+            var minX = self.contentView.width, maxX = 0
+            var minY = self.contentView.height, maxY = 0
+
             for pixel in self.pendingPaint {
                 let x = pixel.x - self.cameraOffsetX, y = pixel.y - self.cameraOffsetY
                 if x < 0 || x >= self.contentView.width || y < 0 || y >= self.contentView.height {
                     continue
                 }
 
-                self.contentView.paint(x: x, y: y, color: self.background.getColor(x: pixel.x, y: pixel.y))
-                for entity in self.entities {
-                    self.contentView.paint(x: x, y: y, color: entity.sprite.getColor(x: pixel.x - Int(entity.x), y: pixel.y - Int(entity.y)))
+                if x < minX {
+                    minX = x
                 }
-                self.contentView.paint(x: x, y: y, color: self.player.sprite.getColor(x: pixel.x - Int(self.player.x), y: pixel.y - Int(self.player.y)))
+                if x > maxX {
+                    maxX = x
+                }
+                if y < minY {
+                    minY = y
+                }
+                if y > maxY {
+                    maxY = y
+                }
+
+                var color = self.background.getColor(x: pixel.x, y: pixel.y)
+                for entity in self.entities {
+                    color = self.contentView.blend(color: entity.sprite.getColor(x: pixel.x - Int(entity.x), y: pixel.y - Int(entity.y)), above: color)
+                }
+                color = self.contentView.blend(color: self.player.sprite.getColor(x: pixel.x - Int(self.player.x), y: pixel.y - Int(self.player.y)), above: color)
+                self.contentView.paint(x: x, y: y, color: color, absolute: true, update: false)
             }
+
+            let pixelSize = max(floor(min(self.contentView.frame.width / CGFloat(self.contentView.width), self.contentView.frame.height / CGFloat(self.contentView.height))), 1)
+            let offsetX = (self.contentView.frame.width - pixelSize * CGFloat(self.contentView.width)) / 2
+            let offsetY = (self.contentView.frame.height - pixelSize * CGFloat(self.contentView.height)) / 2
+
+            let py = CGFloat(self.contentView.frame.height) - (offsetY + CGFloat(maxY + 1) * pixelSize)
+            let px = offsetX + CGFloat(minX) * pixelSize
+            self.contentView.setNeedsDisplay(NSRect(x: px, y: py, width: CGFloat(maxX - minX + 1) * pixelSize, height: CGFloat(maxY - minY + 1) * pixelSize))
 
             self.pendingPaint.removeAll()
             self.painting = false
