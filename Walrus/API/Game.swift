@@ -25,20 +25,20 @@ class Game {
 
     var entities: [Entity] = []
     var cameraOffsetX = 0, cameraOffsetY = 0
-    let background: Sprite
 
     let player: Entity
 
     init(level: Level, contentView: ContentView) {
         self.level = level
         self.contentView = contentView
-        self.background = Sprite.load(name: "background")!
 
         for entity in level.entities {
             self.entities.append(Entity(sprite: entity.sprite, x: entity.x, y: entity.y))
         }
 
-        self.player = Entity(sprite: Sprite.load(name: "character")!, x: Double(self.contentView.width) / 2, y: Double(self.contentView.height) / 2)
+        self.player = Entity(sprite: level.character, x: level.spawnX, y: level.spawnY)
+        self.cameraOffsetX = max(min(Int(level.spawnX - Double(contentView.width) / 2), level.width - contentView.width - 1), 0)
+        self.cameraOffsetY = max(min(Int(level.spawnY - Double(contentView.height) / 2), level.height - contentView.height - 1), 0)
 
         self.tick()
         self.render()
@@ -226,7 +226,7 @@ class Game {
                     maxY = y
                 }
 
-                var color = self.background.getColor(x: pixel.x, y: pixel.y)
+                var color = self.level.background.getColor(x: pixel.x, y: pixel.y)
                 for entity in self.entities {
                     color = Utils.blend(color: entity.sprite.getColor(x: pixel.x - Int(entity.x), y: pixel.y - Int(entity.y)), above: color)
                 }
