@@ -62,32 +62,32 @@ class Controls {
         if moveX != 0 && moveY != 0 {
             moveX /= SQRT_2
             moveY /= SQRT_2
+        }
 
+        if abs(moveX) == abs(moveY) {
             let rx = (game.player.x - game.player.x.rounded(.down)).truncatingRemainder(dividingBy: 1)
             let ry = (game.player.y - game.player.y.rounded(.down)).truncatingRemainder(dividingBy: 1)
 
-            let nx = rx + moveX * SPEED * delta
-            let ny = ry + moveY * SPEED * delta
+            let nx = abs((rx + moveX * SPEED * delta).rounded(.down))
+            let ny = abs((ry + moveY * SPEED * delta).rounded(.down))
 
-            if (nx < 0 || nx > 1) != (ny < 0 || ny > 1) {
-                if (nx < 0 || nx > 1) && !(ny < 0 || ny > 1) {
-                    if (moveX > 0) == (moveY > 0) {
-                        // rx + moveX * SPEED * delta = ry + moveY * SPEED * delta
-                        // moveX * SPEED * delta = ry - rx + moveY * SPEED * delta
-                        // moveX = ry - rx + moveY
-                        moveX = ry - rx + moveY
-                    } else {
-                        // rx + moveX * SPEED * delta = ry - moveY * SPEED * delta
-                        // moveX * SPEED * delta = ry - rx- moveY * SPEED * delta
-                        // moveX = ry - rx - moveY
-                        moveX = ry - rx - moveY
-                    }
-                } else if (ny < 0 || ny > 1) && !(nx < 0 || nx > 1) {
-                    if (moveX > 0) == (moveY > 0) {
-                        moveY = rx - ry + moveX
-                    } else {
-                        moveY = rx - ry - moveX
-                    }
+            if nx > ny {
+                if (moveX > 0) == (moveY > 0) {
+                    // rx + moveX * SPEED * delta = ry + moveY * SPEED * delta
+                    // moveX * SPEED * delta = ry - rx + moveY * SPEED * delta
+                    // moveX = ry - rx + moveY
+                    moveX = ry - rx + moveY
+                } else {
+                    // rx + moveX * SPEED * delta = ry - moveY * SPEED * delta
+                    // moveX * SPEED * delta = ry - rx- moveY * SPEED * delta
+                    // moveX = ry - rx - moveY
+                    moveX = ry - rx - moveY
+                }
+            } else if ny > nx {
+                if (moveX > 0) == (moveY > 0) {
+                    moveY = rx - ry + moveX
+                } else {
+                    moveY = rx - ry - moveX
                 }
             }
         }
