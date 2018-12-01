@@ -79,6 +79,15 @@ extension Sprite {
             self.loadedSprites[name] = sprite
             return sprite.copy() as! StatusSprite
 
+        case "tiling":
+            guard let tile = Sprite.load(name: "Tile@" + name, info: spriteInfo.filter({ (entry) -> Bool in entry.0 != "type" })) else {
+                return nil
+            }
+
+            let sprite = TilingSprite(name: name, tile: tile)
+            self.loadedSprites[name] = sprite
+            return sprite
+
         case nil:
             guard let file = spriteInfo["file"] as? String, let ext = spriteInfo["extension"] as? String else {
                 return nil
