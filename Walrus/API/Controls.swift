@@ -19,12 +19,6 @@ class Controls {
 
     var direction = "s"
 
-    func synchronized<T>(_ lock: AnyObject, _ body: () throws -> T) rethrows -> T {
-        objc_sync_enter(lock)
-        defer { objc_sync_exit(lock) }
-        return try body()
-    }
-
     func tick(game: Game, delta: TimeInterval) {
         if delta <= 0 {
             return
@@ -92,7 +86,7 @@ class Controls {
             }
         }
 
-        synchronized(game.player) {
+        Utils.synchronized(game.player) {
             let previouxX = game.player.x, previousY = game.player.y
             game.player.x += moveX * SPEED * delta
             game.player.y += moveY * SPEED * delta

@@ -148,9 +148,9 @@ class Game {
 
                 var color = self.background.getColor(x: pixel.x, y: pixel.y)
                 for entity in self.entities {
-                    color = ContentView.blend(color: entity.sprite.getColor(x: pixel.x - Int(entity.x), y: pixel.y - Int(entity.y)), above: color)
+                    color = Utils.blend(color: entity.sprite.getColor(x: pixel.x - Int(entity.x), y: pixel.y - Int(entity.y)), above: color)
                 }
-                color = ContentView.blend(color: self.player.sprite.getColor(x: pixel.x - Int(self.player.x), y: pixel.y - Int(self.player.y)), above: color)
+                color = Utils.blend(color: self.player.sprite.getColor(x: pixel.x - Int(self.player.x), y: pixel.y - Int(self.player.y)), above: color)
                 self.contentView.paint(x: x, y: y, color: color, absolute: true, update: false)
             }
 
@@ -165,27 +165,6 @@ class Game {
             self.pendingPaint.removeAll()
             self.painting = false
         }
-    }
-
-}
-
-class Pixel: Hashable {
-
-    static func == (lhs: Pixel, rhs: Pixel) -> Bool {
-        return lhs.x == rhs.x && lhs.y == rhs.y
-    }
-
-    let x, y: Int
-
-    public var hashValue: Int {
-        get {
-            return self.x << 32 | self.x >> (Int.bitWidth - 32) | self.y
-        }
-    }
-
-    init(x: Int, y: Int) {
-        self.x = x
-        self.y = y
     }
 
 }

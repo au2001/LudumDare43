@@ -33,32 +33,11 @@ class ContentView: NSImageView {
         }
     }
 
-    static func blend(color: CGColor, above previousColor: CGColor) -> CGColor {
-        if color.alpha <= 0 {
-            return previousColor
-        }
-
-        if color.alpha >= 1 || previousColor.alpha == 0 {
-            return color
-        }
-
-        let pr = previousColor.components?[0] ?? 0, nr = color.components?[0] ?? 0
-        let pg = previousColor.components?[1] ?? 0, ng = color.components?[1] ?? 0
-        let pb = previousColor.components?[2] ?? 0, nb = color.components?[2] ?? 0
-
-        let r = pr * (1 - color.alpha) + nr * color.alpha
-        let g = pg * (1 - color.alpha) + ng * color.alpha
-        let b = pb * (1 - color.alpha) + nb * color.alpha
-        let a = min(color.alpha + previousColor.alpha, 1)
-
-        return CGColor(red: r, green: g, blue: b, alpha: a)
-    }
-
     func paint(x: Int, y: Int, color: CGColor, absolute: Bool = false, update: Bool = true) {
         if absolute {
             self.pixels[y][x] = color
         } else {
-            self.pixels[y][x] = ContentView.blend(color: color, above: self.pixels[y][x])
+            self.pixels[y][x] = Utils.blend(color: color, above: self.pixels[y][x])
         }
 
         if update {

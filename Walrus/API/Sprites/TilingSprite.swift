@@ -47,9 +47,7 @@ class TilingSprite: Sprite {
     }
 
     override func getColor(x: Int, y: Int) -> CGColor {
-        let x = x % tile.getWidth()
-        let y = y % tile.getHeight()
-        return self.tile.getColor(x: x, y: y)
+        return self.tile.getColor(x: x % tile.getWidth(), y: y % tile.getHeight())
     }
 
     override func getHitBox(threshold: Double = 0.5) -> Set<Pixel> {

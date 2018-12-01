@@ -93,7 +93,7 @@ class CombinedSprite: Sprite {
         var color = CGColor.clear
 
         for (sprite, position) in self.sprites {
-            color = ContentView.blend(color: sprite.getColor(x: x - position.x, y: y - position.y), above: color)
+            color = Utils.blend(color: sprite.getColor(x: x - position.x, y: y - position.y), above: color)
         }
 
         return color
