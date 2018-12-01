@@ -8,12 +8,18 @@
 
 import Cocoa
 
-class Sprite {
+class Sprite: Equatable {
 
+    static func == (lhs: Sprite, rhs: Sprite) -> Bool {
+        return lhs.name == rhs.name
+    }
+
+    let name: String
     let pixels: [[CGColor]]
     let anchorX, anchorY: Int
 
-    init(pixels: [[CGColor]], anchorX: Int, anchorY: Int) {
+    init(name: String, pixels: [[CGColor]], anchorX: Int, anchorY: Int) {
+        self.name = name
         self.pixels = pixels
         self.anchorX = anchorX
         self.anchorY = anchorY

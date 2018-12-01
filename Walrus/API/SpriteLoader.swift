@@ -109,7 +109,7 @@ extension Sprite {
             pixels.append(line)
         }
 
-        let sprite = Sprite(pixels: pixels, anchorX: anchorX, anchorY: anchorY)
+        let sprite = Sprite(name: name, pixels: pixels, anchorX: anchorX, anchorY: anchorY)
         self.loadedSprites[name] = sprite
         return sprite
     }

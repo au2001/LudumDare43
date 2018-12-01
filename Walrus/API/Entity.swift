@@ -8,13 +8,17 @@
 
 import Cocoa
 
-var CURRENT_ID = -1
-var NEXT_ID: Int {
-    CURRENT_ID += 1
-    return CURRENT_ID
-}
+class Entity: Equatable {
 
-class Entity {
+    static func == (lhs: Entity, rhs: Entity) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    static var CURRENT_ID = -1
+    static var NEXT_ID: Int {
+        Entity.CURRENT_ID += 1
+        return Entity.CURRENT_ID
+    }
 
     let id: Int
     let sprite: Sprite
@@ -22,7 +26,7 @@ class Entity {
     var previousX, previousY: Int
 
     init(sprite: Sprite, x: Double, y: Double) {
-        self.id = NEXT_ID
+        self.id = Entity.NEXT_ID
         self.sprite = sprite
         self.x = x
         self.y = y
@@ -51,7 +55,7 @@ class Entity {
     }
 
     func canCollide(with entity: Entity, game: Game) -> Bool {
-        if self.id == entity.id {
+        if self == entity {
             return false
         }
 

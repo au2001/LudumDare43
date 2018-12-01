@@ -170,6 +170,10 @@ class Game {
 
 class Pixel: Hashable {
 
+    static func == (lhs: Pixel, rhs: Pixel) -> Bool {
+        return lhs.x == rhs.x && lhs.y == rhs.y
+    }
+
     let x, y: Int
 
     public var hashValue: Int {
@@ -181,10 +185,6 @@ class Pixel: Hashable {
     init(x: Int, y: Int) {
         self.x = x
         self.y = y
-    }
-
-    static func == (lhs: Pixel, rhs: Pixel) -> Bool {
-        return lhs.x == rhs.x && lhs.y == rhs.y
     }
 
 }

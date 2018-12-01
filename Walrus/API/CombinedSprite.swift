@@ -10,16 +10,33 @@ import Cocoa
 
 class CombinedSprite: Sprite {
 
+    static var CURRENT_ID = -1
+    static var NEXT_ID: String {
+        CombinedSprite.CURRENT_ID += 1
+        return String(CombinedSprite.CURRENT_ID, radix: 16, uppercase: false)
+    }
+
     var sprites: [(sprite: Sprite, position: Pixel)]
 
-    init(sprites: [(sprite: Sprite, position: Pixel)]) {
+    convenience init(sprites: [(sprite: Sprite, position: Pixel)]) {
+        self.init(name: "CombinedSprite@" + CombinedSprite.NEXT_ID, sprites: sprites)
+    }
+
+    init(name: String, sprites: [(sprite: Sprite, position: Pixel)]) {
         self.sprites = sprites
 
-        super.init(pixels: [], anchorX: 0, anchorY: 0)
+        super.init(name: name, pixels: [], anchorX: 0, anchorY: 0)
     }
 
     func add(sprite: Sprite, at position: Pixel) {
         sprites.append((sprite: sprite, position: position))
+    }
+
+    func remove(sprite: Sprite, from position: Pixel) {
+        self.sprites.removeAll { (entry) -> Bool in
+            let (otherSprite, otherPosition) = entry
+            return otherSprite == sprite && otherPosition == position
+        }
     }
 
     override func getWidth() -> Int {
