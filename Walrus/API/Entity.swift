@@ -21,7 +21,7 @@ class Entity: Equatable {
     }
 
     let id: Int
-    let sprite: Sprite
+    var sprite: Sprite
     var x, y: Double
     var previousX, previousY: Int
 
@@ -34,7 +34,7 @@ class Entity: Equatable {
         self.previousY = Int(y)
     }
 
-    func update(game: Game, collide: Bool = true) {
+    func update(game: Game, toSprite sprite: Sprite? = nil) {
         let newX = Int(self.x), newY = Int(self.y)
 
         if newX == self.previousX && newY == self.previousY {
@@ -43,9 +43,19 @@ class Entity: Equatable {
 
         var pixels: Set<Pixel> = []
 
-        for pixel in sprite.getHitBox(threshold: 0) {
+        for pixel in self.sprite.getHitBox(threshold: 0) {
             pixels.insert(Pixel(x: pixel.x + previousX, y: pixel.y + previousY))
-            pixels.insert(Pixel(x: pixel.x + newX, y: pixel.y + newY))
+
+            if sprite == nil {
+                pixels.insert(Pixel(x: pixel.x + newX, y: pixel.y + newY))
+            }
+        }
+
+        if let sprite = sprite {
+            for pixel in sprite.getHitBox(threshold: 0) {
+                pixels.insert(Pixel(x: pixel.x + newX, y: pixel.y + newY))
+            }
+            self.sprite = sprite
         }
 
         self.previousX = newX
@@ -72,11 +82,13 @@ class Entity: Equatable {
         return hitbox
     }
 
-    func collides(with entity: Entity, game: Game, threshold: Double = 0.5) -> Bool {
-        if self.x + Double(self.sprite.getMaxX() + 1) < entity.x + Double(entity.sprite.getMinX()) || self.x + Double(self.sprite.getMinX()) > entity.x + Double(entity.sprite.getMaxX() + 1) {
+    func collides(with entity: Entity, game: Game, withSprite sprite: Sprite? = nil, threshold: Double = 0.5) -> Bool {
+        let sprite = sprite ?? self.sprite
+
+        if self.x + Double(sprite.getMaxX() + 1) < entity.x + Double(entity.sprite.getMinX()) || self.x + Double(sprite.getMinX()) > entity.x + Double(entity.sprite.getMaxX() + 1) {
             return false
         }
-        if self.y + Double(self.sprite.getMaxY() + 1) < entity.y + Double(entity.sprite.getMinY()) || self.y + Double(self.sprite.getMinY()) > entity.y + Double(entity.sprite.getMaxY() + 1) {
+        if self.y + Double(sprite.getMaxY() + 1) < entity.y + Double(entity.sprite.getMinY()) || self.y + Double(sprite.getMinY()) > entity.y + Double(entity.sprite.getMaxY() + 1) {
             return false
         }
 
@@ -84,15 +96,15 @@ class Entity: Equatable {
             return false
         }
 
-        if self.sprite.getWidth() * self.sprite.getHeight() <= entity.sprite.getWidth() * entity.sprite.getHeight() {
-            for pixel in self.sprite.getHitBox(threshold: threshold) {
+        if sprite.getWidth() * sprite.getHeight() <= entity.sprite.getWidth() * entity.sprite.getHeight() {
+            for pixel in sprite.getHitBox(threshold: threshold) {
                 if entity.sprite.getColor(x: Int(self.x) - Int(entity.x) + pixel.x, y: Int(self.y) - Int(entity.y) + pixel.y).alpha > CGFloat(threshold) {
                     return true
                 }
             }
         } else {
             for pixel in entity.sprite.getHitBox(threshold: threshold) {
-                if self.sprite.getColor(x: Int(entity.x) - Int(self.x) + pixel.x, y: Int(entity.y) - Int(self.y) + pixel.y).alpha > CGFloat(threshold) {
+                if sprite.getColor(x: Int(entity.x) - Int(self.x) + pixel.x, y: Int(entity.y) - Int(self.y) + pixel.y).alpha > CGFloat(threshold) {
                     return true
                 }
             }
@@ -101,11 +113,11 @@ class Entity: Equatable {
         return false
     }
 
-    func getCollisions(game: Game, threshold: Double = 0.5) -> [Entity] {
+    func getCollisions(game: Game, withSprite sprite: Sprite? = nil, threshold: Double = 0.5) -> [Entity] {
         var collisions: [Entity] = []
 
         for entity in game.entities + [game.player] {
-            if self.collides(with: entity, game: game, threshold: threshold) {
+            if self.collides(with: entity, game: game, withSprite: sprite, threshold: threshold) {
                 collisions.append(entity)
             }
         }

@@ -36,6 +36,7 @@ class Game {
 
         self.player = Entity(sprite: Sprite.load(name: "character")!, x: Double(self.contentView.width) / 2, y: Double(self.contentView.height) / 2)
 
+        self.tick()
         self.render()
     }
 

@@ -27,7 +27,11 @@ extension Sprite {
         }
 
         for name in spritesInfo.keys {
-            sprites[name] = Sprite.load(name: name)
+            guard let spriteInfo = spritesInfo[name] as? [String: AnyObject] else {
+                continue
+            }
+
+            sprites[name] = Sprite.load(name: name, info: spriteInfo)
         }
 
         return sprites
@@ -35,6 +39,9 @@ extension Sprite {
 
     static func load(name: String) -> Sprite? {
         if self.loadedSprites[name] != nil {
+            if let sprite = (loadedSprites[name] as? NSCopying)?.copy() as? Sprite {
+                return sprite
+            }
             return loadedSprites[name]
         }
 
@@ -48,70 +55,99 @@ extension Sprite {
             return nil
         }
 
-        guard let file = spriteInfo["file"] as? String, let type = spriteInfo["type"] as? String else {
-            return nil
-        }
+        return Sprite.load(name: name, info: spriteInfo)
+    }
 
-        guard let anchorX = spriteInfo["anchorX"] as? Int, let anchorY = spriteInfo["anchorY"] as? Int else {
-            return nil
-        }
-
-        guard let path = Bundle.main.path(forResource: file, ofType: type) else {
-            return nil
-        }
-
-        guard let source = CGDataProvider(url: NSURL(fileURLWithPath: path)) else {
-            return nil
-        }
-
-        guard let image = CGImage(pngDataProviderSource: source, decode: nil, shouldInterpolate: true, intent: .defaultIntent) else {
-            return nil
-        }
-
-        guard let data = CFDataGetBytePtr(image.dataProvider?.data) else {
-            return nil
-        }
-
-        var cropX = 0, cropY = 0, cropWidth = image.width, cropHeight = image.height
-
-        if let rcrop = spriteInfo["crop"] as? [String: AnyObject] {
-            if let rcropX = rcrop["x"] as? Int {
-                cropX = rcropX
+    static func load(name: String, info spriteInfo: [String: AnyObject]) -> Sprite? {
+        switch spriteInfo["type"] as? String {
+        case "status":
+            guard let statusesInfo = spriteInfo["statuses"] as? [String: AnyObject] else {
+                return nil
             }
 
-            if let rcropY = rcrop["y"] as? Int {
-                cropY = rcropY
+            var statuses: [String: Sprite] = [:]
+
+            for status in statusesInfo.keys {
+                if let name = statusesInfo[status] as? String, let sprite = Sprite.load(name: name) {
+                    statuses[status] = sprite
+                } else if let statusInfo = statusesInfo[status] as? [String: AnyObject], let sprite = Sprite.load(name: name + "." + status, info: statusInfo) {
+                    statuses[status] = sprite
+                }
             }
 
-            if let rcropWidth = rcrop["width"] as? Int {
-                cropWidth = rcropWidth
+            let sprite = StatusSprite(name: name, sprites: statuses)
+            self.loadedSprites[name] = sprite
+            return sprite.copy() as! StatusSprite
+
+        case nil:
+            guard let file = spriteInfo["file"] as? String, let ext = spriteInfo["extension"] as? String else {
+                return nil
             }
 
-            if let rcropHeight = rcrop["height"] as? Int {
-                cropHeight = rcropHeight
+            guard let anchorX = spriteInfo["anchorX"] as? Int, let anchorY = spriteInfo["anchorY"] as? Int else {
+                return nil
             }
+
+            guard let path = Bundle.main.path(forResource: file, ofType: ext) else {
+                return nil
+            }
+
+            guard let source = CGDataProvider(url: NSURL(fileURLWithPath: path)) else {
+                return nil
+            }
+
+            guard let image = CGImage(pngDataProviderSource: source, decode: nil, shouldInterpolate: true, intent: .defaultIntent) else {
+                return nil
+            }
+
+            guard let data = CFDataGetBytePtr(image.dataProvider?.data) else {
+                return nil
+            }
+
+            var cropX = 0, cropY = 0, cropWidth = image.width, cropHeight = image.height
+
+            if let rcrop = spriteInfo["crop"] as? [String: AnyObject] {
+                if let rcropX = rcrop["x"] as? Int {
+                    cropX = rcropX
+                }
+
+                if let rcropY = rcrop["y"] as? Int {
+                    cropY = rcropY
+                }
+
+                if let rcropWidth = rcrop["width"] as? Int {
+                    cropWidth = rcropWidth
+                }
+
+                if let rcropHeight = rcrop["height"] as? Int {
+                    cropHeight = rcropHeight
+                }
+            }
+
+            var pixels: [[CGColor]] = []
+
+            for y in cropY..<cropY + cropHeight {
+                var line: [CGColor] = []
+                for x in cropX..<cropX + cropWidth {
+                    let pixelInfo = (image.width * y + x) * 4
+
+                    let r = CGFloat(data[pixelInfo + 0]) / 255
+                    let g = CGFloat(data[pixelInfo + 1]) / 255
+                    let b = CGFloat(data[pixelInfo + 2]) / 255
+                    let a = CGFloat(data[pixelInfo + 3]) / 255
+
+                    line.append(CGColor(red: r, green: g, blue: b, alpha: a))
+                }
+                pixels.append(line)
+            }
+
+            let sprite = Sprite(name: name, pixels: pixels, anchorX: anchorX, anchorY: anchorY)
+            self.loadedSprites[name] = sprite
+            return sprite
+
+        default:
+            return nil
         }
-
-        var pixels: [[CGColor]] = []
-
-        for y in cropY..<cropY + cropHeight {
-            var line: [CGColor] = []
-            for x in cropX..<cropX + cropWidth {
-                let pixelInfo = (image.width * y + x) * 4
-
-                let r = CGFloat(data[pixelInfo + 0]) / 255
-                let g = CGFloat(data[pixelInfo + 1]) / 255
-                let b = CGFloat(data[pixelInfo + 2]) / 255
-                let a = CGFloat(data[pixelInfo + 3]) / 255
-
-                line.append(CGColor(red: r, green: g, blue: b, alpha: a))
-            }
-            pixels.append(line)
-        }
-
-        let sprite = Sprite(name: name, pixels: pixels, anchorX: anchorX, anchorY: anchorY)
-        self.loadedSprites[name] = sprite
-        return sprite
     }
 
 }

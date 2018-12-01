@@ -17,6 +17,8 @@ let SQRT_2 = sqrt(2)
 
 class Controls {
 
+    var direction = "s"
+
     func synchronized<T>(_ lock: AnyObject, _ body: () throws -> T) rethrows -> T {
         objc_sync_enter(lock)
         defer { objc_sync_exit(lock) }
@@ -44,6 +46,16 @@ class Controls {
         }
 
         if moveX == 0 && moveY == 0 {
+            if (game.player.sprite as! StatusSprite).getStatus() != "idle_" + self.direction {
+                let newSprite = (game.player.sprite as! StatusSprite).copy() as! StatusSprite
+                newSprite.setStatus(to: "idle_" + self.direction)
+
+                for _ in game.player.getCollisions(game: game, withSprite: newSprite) {
+                    return
+                }
+
+                game.player.update(game: game, toSprite: newSprite)
+            }
             return
         }
 
@@ -57,13 +69,55 @@ class Controls {
             game.player.x += moveX * SPEED * delta
             game.player.y += moveY * SPEED * delta
 
-            for _ in game.player.getCollisions(game: game) {
-                game.player.x = previouxX
-                game.player.y = previousY
-                return
+            var newDirection = self.direction
+
+            if moveX > 0 {
+                if moveY > 0 {
+                    newDirection = "se"
+                } else if moveY < 0 {
+                    newDirection = "ne"
+                } else {
+                    newDirection = "e"
+                }
+            } else if moveX < 0 {
+                if moveY > 0 {
+                    newDirection = "sw"
+                } else if moveY < 0 {
+                    newDirection = "nw"
+                } else {
+                    newDirection = "w"
+                }
+            } else {
+                if moveY > 0 {
+                    newDirection = "s"
+                } else if moveY < 0 {
+                    newDirection = "n"
+                } else {
+                    newDirection = "s"
+                }
             }
 
-            game.player.update(game: game)
+            if newDirection != self.direction {
+                let newSprite = (game.player.sprite as! StatusSprite).copy() as! StatusSprite
+                newSprite.setStatus(to: "walking_" + newDirection)
+
+                for _ in game.player.getCollisions(game: game, withSprite: newSprite) {
+                    game.player.x = previouxX
+                    game.player.y = previousY
+                    return
+                }
+
+                self.direction = newDirection
+                game.player.update(game: game, toSprite: newSprite)
+            } else {
+                for _ in game.player.getCollisions(game: game) {
+                    game.player.x = previouxX
+                    game.player.y = previousY
+                    return
+                }
+
+                game.player.update(game: game)
+            }
         }
     }
 

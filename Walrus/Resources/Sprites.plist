@@ -6,7 +6,7 @@
 	<dict>
 		<key>file</key>
 		<string>background</string>
-		<key>type</key>
+		<key>extension</key>
 		<string>png</string>
 		<key>anchorX</key>
 		<integer>0</integer>
@@ -15,20 +15,193 @@
 	</dict>
 	<key>character</key>
 	<dict>
-		<key>file</key>
-		<string>character</string>
 		<key>type</key>
-		<string>png</string>
-		<key>anchorX</key>
-		<integer>7</integer>
-		<key>anchorY</key>
-		<integer>12</integer>
+		<string>status</string>
+		<key>statuses</key>
+		<dict>
+			<key>idle_s</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+			<key>idle_n</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+			<key>idle_e</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+			<key>idle_w</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+			<key>idle_se</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+			<key>idle_sw</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+			<key>idle_ne</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+			<key>idle_nw</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+			<key>walking_s</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+			<key>walking_n</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+			<key>walking_e</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+			<key>walking_w</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+			<key>walking_se</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+			<key>walking_sw</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+			<key>walking_ne</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+			<key>walking_nw</key>
+			<dict>
+				<key>file</key>
+				<string>character</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>7</integer>
+				<key>anchorY</key>
+				<integer>12</integer>
+			</dict>
+		</dict>
 	</dict>
 	<key>tree1</key>
 	<dict>
 		<key>file</key>
 		<string>trees</string>
-		<key>type</key>
+		<key>extension</key>
 		<string>png</string>
 		<key>anchorX</key>
 		<integer>32</integer>
@@ -50,7 +223,7 @@
 	<dict>
 		<key>file</key>
 		<string>trees</string>
-		<key>type</key>
+		<key>extension</key>
 		<string>png</string>
 		<key>anchorX</key>
 		<integer>32</integer>
@@ -72,7 +245,7 @@
 	<dict>
 		<key>file</key>
 		<string>trees</string>
-		<key>type</key>
+		<key>extension</key>
 		<string>png</string>
 		<key>anchorX</key>
 		<integer>32</integer>
@@ -94,7 +267,7 @@
 	<dict>
 		<key>file</key>
 		<string>trees</string>
-		<key>type</key>
+		<key>extension</key>
 		<string>png</string>
 		<key>anchorX</key>
 		<integer>32</integer>
@@ -116,7 +289,7 @@
 	<dict>
 		<key>file</key>
 		<string>trees</string>
-		<key>type</key>
+		<key>extension</key>
 		<string>png</string>
 		<key>anchorX</key>
 		<integer>32</integer>
@@ -138,7 +311,7 @@
 	<dict>
 		<key>file</key>
 		<string>trees</string>
-		<key>type</key>
+		<key>extension</key>
 		<string>png</string>
 		<key>anchorX</key>
 		<integer>32</integer>
@@ -160,7 +333,7 @@
 	<dict>
 		<key>file</key>
 		<string>trees</string>
-		<key>type</key>
+		<key>extension</key>
 		<string>png</string>
 		<key>anchorX</key>
 		<integer>32</integer>
@@ -182,7 +355,7 @@
 	<dict>
 		<key>file</key>
 		<string>trees</string>
-		<key>type</key>
+		<key>extension</key>
 		<string>png</string>
 		<key>anchorX</key>
 		<integer>32</integer>
@@ -204,7 +377,7 @@
 	<dict>
 		<key>file</key>
 		<string>trees</string>
-		<key>type</key>
+		<key>extension</key>
 		<string>png</string>
 		<key>anchorX</key>
 		<integer>32</integer>
@@ -226,7 +399,7 @@
 	<dict>
 		<key>file</key>
 		<string>trees</string>
-		<key>type</key>
+		<key>extension</key>
 		<string>png</string>
 		<key>anchorX</key>
 		<integer>32</integer>
@@ -248,7 +421,7 @@
 	<dict>
 		<key>file</key>
 		<string>trees</string>
-		<key>type</key>
+		<key>extension</key>
 		<string>png</string>
 		<key>anchorX</key>
 		<integer>32</integer>
@@ -270,7 +443,7 @@
 	<dict>
 		<key>file</key>
 		<string>trees</string>
-		<key>type</key>
+		<key>extension</key>
 		<string>png</string>
 		<key>anchorX</key>
 		<integer>32</integer>
