@@ -88,8 +88,8 @@ class Controls {
 
         Utils.synchronized(game.player) {
             let previouxX = game.player.x, previousY = game.player.y
-            game.player.x += moveX * SPEED * delta
-            game.player.y += moveY * SPEED * delta
+            game.player.x = max(min(game.player.x + moveX * SPEED * delta, Double(game.level.width - game.player.sprite.getMaxX() - 1)), -Double(game.player.sprite.getMinX()))
+            game.player.y = max(min(game.player.y + moveY * SPEED * delta, Double(game.level.height - game.player.sprite.getMaxY() - 1)), -Double(game.player.sprite.getMinY()))
 
             var newDirection = self.direction
 
