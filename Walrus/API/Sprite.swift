@@ -19,12 +19,12 @@ class Sprite {
         self.anchorY = anchorY
     }
 
-    func getHeight() -> Int {
-        return pixels.count
-    }
-
     func getWidth() -> Int {
         return pixels.first?.count ?? 0
+    }
+
+    func getHeight() -> Int {
+        return pixels.count
     }
 
     func getMinX() -> Int {

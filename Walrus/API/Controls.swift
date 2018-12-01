@@ -17,6 +17,12 @@ let SQRT_2 = sqrt(2)
 
 class Controls {
 
+    func synchronized<T>(_ lock: AnyObject, _ body: () throws -> T) rethrows -> T {
+        objc_sync_enter(lock)
+        defer { objc_sync_exit(lock) }
+        return try body()
+    }
+
     func tick(game: Game, delta: TimeInterval) {
         if delta <= 0 {
             return
@@ -46,9 +52,19 @@ class Controls {
             moveY /= SQRT_2
         }
 
-        game.player.x += moveX * SPEED * delta
-        game.player.y += moveY * SPEED * delta
-        game.player.update(game: game)
+        synchronized(game.player) {
+            let previouxX = game.player.x, previousY = game.player.y
+            game.player.x += moveX * SPEED * delta
+            game.player.y += moveY * SPEED * delta
+
+            for _ in game.player.getCollisions(game: game) {
+                game.player.x = previouxX
+                game.player.y = previousY
+                return
+            }
+
+            game.player.update(game: game)
+        }
     }
 
 }
