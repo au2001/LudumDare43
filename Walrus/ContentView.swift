@@ -25,8 +25,12 @@ class ContentView: NSImageView {
             }
         }
 
-        self.game = Game.init(contentView: self)
-        self.game?.start()
+        if let level = Level.generate() {
+            self.game = Game.init(level: level, contentView: self)
+            self.game?.start()
+        } else {
+            print("Failed to generate a level")
+        }
     }
 
     static func blend(color: CGColor, above previousColor: CGColor) -> CGColor {

@@ -10,6 +10,7 @@ import Cocoa
 
 class Game {
 
+    let level: Level
     let contentView: ContentView
 
     var displayLink: CVDisplayLink?
@@ -24,14 +25,16 @@ class Game {
 
     let player: Entity
 
-    init(contentView: ContentView) {
+    init(level: Level, contentView: ContentView) {
+        self.level = level
         self.contentView = contentView
         self.background = Sprite.load(name: "background")!
 
-        self.player = Entity(sprite: Sprite.load(name: "character")!)
-        self.player.x = Double(self.contentView.width) / 2
-        self.player.y = Double(self.contentView.height) / 2
-        self.player.update(game: self)
+        for entity in level.entities {
+            self.entities.append(Entity(sprite: entity.sprite, x: entity.x, y: entity.y))
+        }
+
+        self.player = Entity(sprite: Sprite.load(name: "character")!, x: Double(self.contentView.width) / 2, y: Double(self.contentView.height) / 2)
 
         self.render()
     }
