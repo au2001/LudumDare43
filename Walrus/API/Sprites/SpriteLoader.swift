@@ -150,6 +150,78 @@ extension Sprite {
                 pixels.append(line)
             }
 
+            while !pixels.isEmpty {
+                var empty = true
+                for x in 0..<pixels.first!.count {
+                    if pixels.first![x].alpha > 0 {
+                        empty = false
+                        break
+                    }
+                }
+
+                if empty {
+                    pixels.remove(at: 0)
+                } else {
+                    break
+                }
+            }
+
+            while !pixels.isEmpty {
+                var empty = true
+                for x in 0..<pixels.last!.count {
+                    if pixels.last![x].alpha > 0 {
+                        empty = false
+                        break
+                    }
+                }
+
+                if empty {
+                    pixels.remove(at: pixels.count - 1)
+                } else {
+                    break
+                }
+            }
+
+            while !(pixels.first?.isEmpty ?? true) {
+                var empty = true
+                for y in 0..<pixels.count {
+                    if pixels[y].first!.alpha > 0 {
+                        empty = false
+                        break
+                    }
+                }
+
+                if empty {
+                    for y in 0..<pixels.count {
+                        pixels[y].remove(at: 0)
+                    }
+                } else {
+                    break
+                }
+            }
+
+            while !(pixels.first?.isEmpty ?? true) {
+                var empty = true
+                for y in 0..<pixels.count {
+                    if pixels[y].last!.alpha > 0 {
+                        empty = false
+                        break
+                    }
+                }
+
+                if empty {
+                    for y in 0..<pixels.count {
+                        pixels[y].remove(at: pixels[y].count - 1)
+                    }
+                } else {
+                    break
+                }
+            }
+
+            if pixels.first?.isEmpty ?? false {
+                pixels.removeAll()
+            }
+
             let sprite = Sprite(name: name, pixels: pixels, anchorX: anchorX, anchorY: anchorY)
             self.loadedSprites[name] = sprite
             return sprite
