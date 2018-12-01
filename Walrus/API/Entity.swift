@@ -37,7 +37,7 @@ class Entity: Equatable {
     func update(game: Game, toSprite sprite: Sprite? = nil) {
         let newX = Int(self.x), newY = Int(self.y)
 
-        if newX == self.previousX && newY == self.previousY {
+        if sprite == nil && newX == self.previousX && newY == self.previousY {
             return
         }
 
@@ -46,7 +46,7 @@ class Entity: Equatable {
         for pixel in self.sprite.getHitBox(threshold: 0) {
             pixels.insert(Pixel(x: pixel.x + previousX, y: pixel.y + previousY))
 
-            if sprite == nil {
+            if sprite == nil && (newX != self.previousX || newY != self.previousY) {
                 pixels.insert(Pixel(x: pixel.x + newX, y: pixel.y + newY))
             }
         }

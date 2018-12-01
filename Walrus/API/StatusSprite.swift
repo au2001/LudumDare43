@@ -42,14 +42,6 @@ class StatusSprite: Sprite, NSCopying {
         self.sprites.removeValue(forKey: status)
     }
 
-    func getStatus() -> String? {
-        return self.status
-    }
-
-    func setStatus(to status: String?) {
-        self.status = status
-    }
-
     func getCurrent() -> Sprite? {
         if let status = self.status, let sprite = self.sprites[status] {
             return sprite

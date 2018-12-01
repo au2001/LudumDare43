@@ -46,9 +46,9 @@ class Controls {
         }
 
         if moveX == 0 && moveY == 0 {
-            if (game.player.sprite as! StatusSprite).getStatus() != "idle_" + self.direction {
+            if (game.player.sprite as! StatusSprite).status != "idle_" + self.direction {
                 let newSprite = (game.player.sprite as! StatusSprite).copy() as! StatusSprite
-                newSprite.setStatus(to: "idle_" + self.direction)
+                newSprite.status = "idle_" + self.direction
 
                 for _ in game.player.getCollisions(game: game, withSprite: newSprite) {
                     return
@@ -125,9 +125,9 @@ class Controls {
                 }
             }
 
-            if newDirection != self.direction {
+            if (game.player.sprite as! StatusSprite).status != "walking_" + newDirection {
                 let newSprite = (game.player.sprite as! StatusSprite).copy() as! StatusSprite
-                newSprite.setStatus(to: "walking_" + newDirection)
+                newSprite.status = "walking_" + newDirection
 
                 for _ in game.player.getCollisions(game: game, withSprite: newSprite) {
                     game.player.x = previouxX
