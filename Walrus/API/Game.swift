@@ -144,9 +144,9 @@ class Game {
 
                 var color = self.background.getColor(x: pixel.x, y: pixel.y)
                 for entity in self.entities {
-                    color = self.contentView.blend(color: entity.sprite.getColor(x: pixel.x - Int(entity.x), y: pixel.y - Int(entity.y)), above: color)
+                    color = ContentView.blend(color: entity.sprite.getColor(x: pixel.x - Int(entity.x), y: pixel.y - Int(entity.y)), above: color)
                 }
-                color = self.contentView.blend(color: self.player.sprite.getColor(x: pixel.x - Int(self.player.x), y: pixel.y - Int(self.player.y)), above: color)
+                color = ContentView.blend(color: self.player.sprite.getColor(x: pixel.x - Int(self.player.x), y: pixel.y - Int(self.player.y)), above: color)
                 self.contentView.paint(x: x, y: y, color: color, absolute: true, update: false)
             }
 

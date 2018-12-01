@@ -14,6 +14,7 @@
 		0D863C0B21AEB1CC00ACF903 /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D863C0A21AEB1CC00ACF903 /* Sprite.swift */; };
 		0D863C0D21AEB9A000ACF903 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D863C0C21AEB9A000ACF903 /* Game.swift */; };
 		0D863C0F21AEB9A900ACF903 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D863C0E21AEB9A900ACF903 /* Entity.swift */; };
+		0DABF58B21B2A92E00893355 /* trees.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DABF58A21B2A92E00893355 /* trees.png */; };
 		0DB2BA8A21AF249600135893 /* Controls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2BA8921AF249600135893 /* Controls.swift */; };
 		0DB2BA8C21AF2DAA00135893 /* SpriteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2BA8B21AF2DAA00135893 /* SpriteLoader.swift */; };
 		0DB2BA8E21AF32F100135893 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2BA8D21AF32F000135893 /* background.png */; };
@@ -32,6 +33,7 @@
 		0D863C0A21AEB1CC00ACF903 /* Sprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
 		0D863C0C21AEB9A000ACF903 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		0D863C0E21AEB9A900ACF903 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		0DABF58A21B2A92E00893355 /* trees.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trees.png; sourceTree = "<group>"; };
 		0DB2BA8921AF249600135893 /* Controls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controls.swift; sourceTree = "<group>"; };
 		0DB2BA8B21AF2DAA00135893 /* SpriteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteLoader.swift; sourceTree = "<group>"; };
 		0DB2BA8D21AF32F000135893 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				0DB2BA9121AF341700135893 /* Sprites.plist */,
 				0DB2BA8D21AF32F000135893 /* background.png */,
 				0DB2BA9321AF3E9100135893 /* character.png */,
+				0DABF58A21B2A92E00893355 /* trees.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -162,10 +165,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D863BFD21ADFAE200ACF903 /* Assets.xcassets in Resources */,
-				0DB2BA9221AF341700135893 /* Sprites.plist in Resources */,
-				0DB2BA9421AF3E9100135893 /* character.png in Resources */,
 				0D863C0021ADFAE200ACF903 /* MainMenu.xib in Resources */,
+				0DB2BA9221AF341700135893 /* Sprites.plist in Resources */,
 				0DB2BA8E21AF32F100135893 /* background.png in Resources */,
+				0DB2BA9421AF3E9100135893 /* character.png in Resources */,
+				0DABF58B21B2A92E00893355 /* trees.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

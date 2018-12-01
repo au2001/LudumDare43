@@ -29,7 +29,7 @@ class ContentView: NSImageView {
         self.game?.start()
     }
 
-    func blend(color: CGColor, above previousColor: CGColor) -> CGColor {
+    static func blend(color: CGColor, above previousColor: CGColor) -> CGColor {
         if color.alpha <= 0 {
             return previousColor
         }
@@ -54,7 +54,7 @@ class ContentView: NSImageView {
         if absolute {
             self.pixels[y][x] = color
         } else {
-            self.pixels[y][x] = self.blend(color: color, above: self.pixels[y][x])
+            self.pixels[y][x] = ContentView.blend(color: color, above: self.pixels[y][x])
         }
 
         if update {

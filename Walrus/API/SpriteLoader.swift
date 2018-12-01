@@ -10,8 +10,28 @@ import Foundation
 
 extension Sprite {
 
-    static var spritesInfo: [String: [String: AnyObject]]?
+    static var spritesInfo: [String: AnyObject]?
     static var loadedSprites: [String: Sprite] = [:]
+
+    static func loadAll() -> [String: Sprite?] {
+        if Sprite.spritesInfo == nil {
+            if let path = Bundle.main.path(forResource: "Sprites", ofType: "plist") {
+                Sprite.spritesInfo = NSDictionary(contentsOfFile: path) as? [String: AnyObject]
+            }
+        }
+
+        var sprites: [String: Sprite?] = [:]
+
+        guard let spritesInfo = Sprite.spritesInfo else {
+            return sprites
+        }
+
+        for name in spritesInfo.keys {
+            sprites[name] = Sprite.load(name: name)
+        }
+
+        return sprites
+    }
 
     static func load(name: String) -> Sprite? {
         if self.loadedSprites[name] != nil {
@@ -20,11 +40,11 @@ extension Sprite {
 
         if Sprite.spritesInfo == nil {
             if let path = Bundle.main.path(forResource: "Sprites", ofType: "plist") {
-                Sprite.spritesInfo = NSDictionary(contentsOfFile: path) as? [String: [String: AnyObject]]
+                Sprite.spritesInfo = NSDictionary(contentsOfFile: path) as? [String: AnyObject]
             }
         }
 
-        guard let spritesInfo = Sprite.spritesInfo, let spriteInfo = spritesInfo[name] else {
+        guard let spritesInfo = Sprite.spritesInfo, let spriteInfo = spritesInfo[name] as? [String: AnyObject] else {
             return nil
         }
 
@@ -52,11 +72,31 @@ extension Sprite {
             return nil
         }
 
+        var cropX = 0, cropY = 0, cropWidth = image.width, cropHeight = image.height
+
+        if let rcrop = spriteInfo["crop"] as? [String: AnyObject] {
+            if let rcropX = rcrop["x"] as? Int {
+                cropX = rcropX
+            }
+
+            if let rcropY = rcrop["y"] as? Int {
+                cropY = rcropY
+            }
+
+            if let rcropWidth = rcrop["width"] as? Int {
+                cropWidth = rcropWidth
+            }
+
+            if let rcropHeight = rcrop["height"] as? Int {
+                cropHeight = rcropHeight
+            }
+        }
+
         var pixels: [[CGColor]] = []
 
-        for y in 0..<image.height {
-            pixels.append([])
-            for x in 0..<image.width {
+        for y in cropY..<cropY + cropHeight {
+            var line: [CGColor] = []
+            for x in cropX..<cropX + cropWidth {
                 let pixelInfo = (image.width * y + x) * 4
 
                 let r = CGFloat(data[pixelInfo + 0]) / 255
@@ -64,8 +104,9 @@ extension Sprite {
                 let b = CGFloat(data[pixelInfo + 2]) / 255
                 let a = CGFloat(data[pixelInfo + 3]) / 255
 
-                pixels[y].append(CGColor(red: r, green: g, blue: b, alpha: a))
+                line.append(CGColor(red: r, green: g, blue: b, alpha: a))
             }
+            pixels.append(line)
         }
 
         let sprite = Sprite(pixels: pixels, anchorX: anchorX, anchorY: anchorY)
