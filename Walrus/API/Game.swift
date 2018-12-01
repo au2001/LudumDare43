@@ -13,12 +13,16 @@ class Game {
     let level: Level
     let contentView: ContentView
 
+    var timer: Timer?
     var displayLink: CVDisplayLink?
     var keysDown: [UInt16] = []
+
     let controls = Controls()
     var lastTick: TimeInterval = 0
+
     var pendingPaint: Set<Pixel> = []
     var painting = false
+
     var entities: [Entity] = []
     var cameraOffsetX = 0, cameraOffsetY = 0
     let background: Sprite
@@ -48,7 +52,6 @@ class Game {
             if let displayLink = self.displayLink {
                 let displayLinkOutputCallback: CVDisplayLinkOutputCallback = { (displayLink: CVDisplayLink, inNow: UnsafePointer<CVTimeStamp>, inOutputTime: UnsafePointer<CVTimeStamp>, flagsIn: CVOptionFlags, flagsOut: UnsafeMutablePointer<CVOptionFlags>, displayLinkContext: UnsafeMutableRawPointer?) -> CVReturn in
                     let game = unsafeBitCast(displayLinkContext, to: Game.self)
-                    game.tick()
                     game.paint()
                     return kCVReturnSuccess
                 }
@@ -56,6 +59,12 @@ class Game {
                 CVDisplayLinkSetOutputCallback(displayLink, displayLinkOutputCallback, UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque()))
                 CVDisplayLinkStart(displayLink)
             }
+        }
+
+        if self.timer == nil {
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1 / 60, repeats: true, block: { (timer) in
+                self.tick()
+            })
         }
     }
 
@@ -90,6 +99,68 @@ class Game {
         self.lastTick = now
 
         self.controls.tick(game: self, delta: delta)
+
+        var fullRender = false
+
+        while Int(self.player.x) + self.player.sprite.getMinX() < self.cameraOffsetX {
+            if self.cameraOffsetX <= 0 {
+                break
+            }
+
+            self.cameraOffsetX -= self.contentView.width - self.player.sprite.getWidth() + 1
+            fullRender = true
+
+            if self.cameraOffsetX <= 0 {
+                self.cameraOffsetX = 0
+                break
+            }
+        }
+
+        while Int(self.player.x) + self.player.sprite.getMaxX() >= self.cameraOffsetX + self.contentView.width {
+            if self.cameraOffsetX >= self.level.width - self.contentView.width - 1 {
+                break
+            }
+
+            self.cameraOffsetX += self.contentView.width - self.player.sprite.getWidth() + 1
+            fullRender = true
+
+            if self.cameraOffsetX >= self.level.width - self.contentView.width - 1 {
+                self.cameraOffsetX = self.level.width - self.contentView.width - 1
+                break
+            }
+        }
+
+        while Int(self.player.y) + self.player.sprite.getMinY() < self.cameraOffsetY {
+            if self.cameraOffsetY <= 0 {
+                break
+            }
+
+            self.cameraOffsetY -= self.contentView.height - self.player.sprite.getHeight() + 1
+            fullRender = true
+
+            if self.cameraOffsetY <= 0 {
+                self.cameraOffsetY = 0
+                break
+            }
+        }
+
+        while Int(self.player.y) + self.player.sprite.getMaxY() >= self.cameraOffsetY + self.contentView.height {
+            if self.cameraOffsetY >= self.level.height - self.contentView.height - 1 {
+                break
+            }
+
+            self.cameraOffsetY += self.contentView.height - self.player.sprite.getHeight() + 1
+            fullRender = true
+
+            if self.cameraOffsetY >= self.level.height - self.contentView.height - 1 {
+                self.cameraOffsetY = self.level.height - self.contentView.height - 1
+                break
+            }
+        }
+
+        if fullRender {
+            self.render()
+        }
     }
 
     func render() {
@@ -97,7 +168,7 @@ class Game {
 
         for y in 0..<self.contentView.height {
             for x in 0..<self.contentView.width {
-                pixels.insert(Pixel(x: x, y: y))
+                pixels.insert(Pixel(x: self.cameraOffsetX + x, y: self.cameraOffsetY + y))
             }
         }
 
@@ -109,25 +180,34 @@ class Game {
             return
         }
 
-        self.pendingPaint.formUnion(pixels)
+        Utils.synchronized(self.pendingPaint as AnyObject) { () -> Void in
+            self.pendingPaint.formUnion(pixels)
+        }
     }
 
     func paint() {
-        if self.pendingPaint.isEmpty {
-            return
-        }
-
         if self.painting {
             return
         }
 
         self.painting = true
+        var pendingPaint: Set<Pixel> = []
 
-        DispatchQueue.main.async {
+        Utils.synchronized(self.pendingPaint as AnyObject) { () -> Void in
+            pendingPaint.formUnion(self.pendingPaint)
+            self.pendingPaint.removeAll()
+        }
+
+        if pendingPaint.isEmpty {
+            self.painting = false
+            return
+        }
+
+        DispatchQueue.main.sync {
             var minX = self.contentView.width, maxX = 0
             var minY = self.contentView.height, maxY = 0
 
-            for pixel in self.pendingPaint {
+            for pixel in pendingPaint {
                 let x = pixel.x - self.cameraOffsetX, y = pixel.y - self.cameraOffsetY
                 if x < 0 || x >= self.contentView.width || y < 0 || y >= self.contentView.height {
                     continue
@@ -162,7 +242,6 @@ class Game {
             let px = offsetX + CGFloat(minX) * pixelSize
             self.contentView.setNeedsDisplay(NSRect(x: px, y: py, width: CGFloat(maxX - minX + 1) * pixelSize, height: CGFloat(maxY - minY + 1) * pixelSize))
 
-            self.pendingPaint.removeAll()
             self.painting = false
         }
     }
