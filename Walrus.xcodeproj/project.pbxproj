@@ -22,6 +22,7 @@
 		0DB2BA8E21AF32F100135893 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2BA8D21AF32F000135893 /* background.png */; };
 		0DB2BA9221AF341700135893 /* Sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2BA9121AF341700135893 /* Sprites.plist */; };
 		0DB2BA9421AF3E9100135893 /* character.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2BA9321AF3E9100135893 /* character.png */; };
+		0DBBF90B21B2B951004DF752 /* CombinedSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBBF90A21B2B951004DF752 /* CombinedSprite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		0DB2BA8D21AF32F000135893 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		0DB2BA9121AF341700135893 /* Sprites.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Sprites.plist; path = Walrus/Resources/Sprites.plist; sourceTree = SOURCE_ROOT; };
 		0DB2BA9321AF3E9100135893 /* character.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character.png; sourceTree = "<group>"; };
+		0DBBF90A21B2B951004DF752 /* CombinedSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedSprite.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				0DB2BA8921AF249600135893 /* Controls.swift */,
 				0D863C0A21AEB1CC00ACF903 /* Sprite.swift */,
 				0DB2BA8B21AF2DAA00135893 /* SpriteLoader.swift */,
+				0DBBF90A21B2B951004DF752 /* CombinedSprite.swift */,
 				0D863C0E21AEB9A900ACF903 /* Entity.swift */,
 			);
 			path = API;
@@ -192,6 +195,7 @@
 				0DB2BA8C21AF2DAA00135893 /* SpriteLoader.swift in Sources */,
 				0D863C0B21AEB1CC00ACF903 /* Sprite.swift in Sources */,
 				0D863BFB21ADFAE100ACF903 /* AppDelegate.swift in Sources */,
+				0DBBF90B21B2B951004DF752 /* CombinedSprite.swift in Sources */,
 				0D863C0D21AEB9A000ACF903 /* Game.swift in Sources */,
 				0DB2BA8A21AF249600135893 /* Controls.swift in Sources */,
 				0D91C1A821B1C03E0071C6AB /* Level.swift in Sources */,
