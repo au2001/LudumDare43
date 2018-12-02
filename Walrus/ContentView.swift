@@ -25,12 +25,10 @@ class ContentView: NSImageView {
             }
         }
 
-        if let level = Level.generate() {
-            self.game = Game.init(level: level, contentView: self)
-            self.game?.start()
-        } else {
-            print("Failed to generate a level")
-        }
+        let settings = GeneratorSettings()
+        let level = Level.generate(withSettings: settings)
+        self.game = Game.init(level: level, contentView: self)
+        self.game?.start()
     }
 
     func paint(x: Int, y: Int, color: CGColor, absolute: Bool = false, update: Bool = true) {

@@ -14,6 +14,8 @@ class Sprite: Equatable {
         return lhs.name == rhs.name
     }
 
+    static let EMPTY: Sprite = Sprite(name: "empty", pixels: [], anchorX: 0, anchorY: 0)
+
     let name: String
     let pixels: [[CGColor]]
     let anchorX, anchorY: Int

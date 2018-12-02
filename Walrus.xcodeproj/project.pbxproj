@@ -26,6 +26,8 @@
 		0DBBF90D21B2C1E9004DF752 /* StatusSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBBF90C21B2C1E9004DF752 /* StatusSprite.swift */; };
 		0DBBF90F21B2F18E004DF752 /* TilingSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBBF90E21B2F18E004DF752 /* TilingSprite.swift */; };
 		0DBBF91621B31135004DF752 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBBF91521B31135004DF752 /* Utils.swift */; };
+		0DBBF91821B326B8004DF752 /* temple.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DBBF91721B326B8004DF752 /* temple.png */; };
+		0DBBF91A21B32FA0004DF752 /* bushes.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DBBF91921B32FA0004DF752 /* bushes.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		0DBBF90C21B2C1E9004DF752 /* StatusSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusSprite.swift; sourceTree = "<group>"; };
 		0DBBF90E21B2F18E004DF752 /* TilingSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilingSprite.swift; sourceTree = "<group>"; };
 		0DBBF91521B31135004DF752 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		0DBBF91721B326B8004DF752 /* temple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temple.png; sourceTree = "<group>"; };
+		0DBBF91921B32FA0004DF752 /* bushes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bushes.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +105,9 @@
 				0DB2BA9121AF341700135893 /* Sprites.plist */,
 				0DB2BA8D21AF32F000135893 /* background.png */,
 				0DB2BA9321AF3E9100135893 /* character.png */,
+				0DBBF91721B326B8004DF752 /* temple.png */,
 				0DABF58A21B2A92E00893355 /* trees.png */,
+				0DBBF91921B32FA0004DF752 /* bushes.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -208,8 +214,10 @@
 			files = (
 				0D863BFD21ADFAE200ACF903 /* Assets.xcassets in Resources */,
 				0D863C0021ADFAE200ACF903 /* MainMenu.xib in Resources */,
+				0DBBF91821B326B8004DF752 /* temple.png in Resources */,
 				0DB2BA9221AF341700135893 /* Sprites.plist in Resources */,
 				0DB2BA8E21AF32F100135893 /* background.png in Resources */,
+				0DBBF91A21B32FA0004DF752 /* bushes.png in Resources */,
 				0DB2BA9421AF3E9100135893 /* character.png in Resources */,
 				0DABF58B21B2A92E00893355 /* trees.png in Resources */,
 			);
