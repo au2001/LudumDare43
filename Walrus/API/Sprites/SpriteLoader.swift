@@ -93,7 +93,7 @@ extension Sprite {
                 return nil
             }
 
-            guard let anchorX = spriteInfo["anchorX"] as? Int, let anchorY = spriteInfo["anchorY"] as? Int else {
+            guard var anchorX = spriteInfo["anchorX"] as? Int, var anchorY = spriteInfo["anchorY"] as? Int else {
                 return nil
             }
 
@@ -161,6 +161,7 @@ extension Sprite {
 
                 if empty {
                     pixels.remove(at: 0)
+                    anchorY -= 1
                 } else {
                     break
                 }
@@ -195,6 +196,7 @@ extension Sprite {
                     for y in 0..<pixels.count {
                         pixels[y].remove(at: 0)
                     }
+                    anchorX -= 1
                 } else {
                     break
                 }
