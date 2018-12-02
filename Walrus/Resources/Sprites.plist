@@ -31,6 +31,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>0</integer>
+					<key>y</key>
+					<integer>0</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 			<key>idle_n</key>
 			<dict>
@@ -42,6 +53,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>0</integer>
+					<key>y</key>
+					<integer>18</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 			<key>idle_e</key>
 			<dict>
@@ -53,6 +75,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>0</integer>
+					<key>y</key>
+					<integer>54</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 			<key>idle_w</key>
 			<dict>
@@ -64,6 +97,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>0</integer>
+					<key>y</key>
+					<integer>36</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 			<key>idle_se</key>
 			<dict>
@@ -75,6 +119,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>0</integer>
+					<key>y</key>
+					<integer>54</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 			<key>idle_sw</key>
 			<dict>
@@ -86,6 +141,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>0</integer>
+					<key>y</key>
+					<integer>36</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 			<key>idle_ne</key>
 			<dict>
@@ -97,6 +163,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>0</integer>
+					<key>y</key>
+					<integer>54</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 			<key>idle_nw</key>
 			<dict>
@@ -108,6 +185,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>0</integer>
+					<key>y</key>
+					<integer>36</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 			<key>walking_s</key>
 			<dict>
@@ -119,6 +207,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>14</integer>
+					<key>y</key>
+					<integer>0</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 			<key>walking_n</key>
 			<dict>
@@ -130,6 +229,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>14</integer>
+					<key>y</key>
+					<integer>18</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 			<key>walking_e</key>
 			<dict>
@@ -141,6 +251,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>14</integer>
+					<key>y</key>
+					<integer>54</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 			<key>walking_w</key>
 			<dict>
@@ -152,6 +273,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>14</integer>
+					<key>y</key>
+					<integer>36</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 			<key>walking_se</key>
 			<dict>
@@ -163,6 +295,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>14</integer>
+					<key>y</key>
+					<integer>54</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 			<key>walking_sw</key>
 			<dict>
@@ -174,6 +317,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>14</integer>
+					<key>y</key>
+					<integer>36</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 			<key>walking_ne</key>
 			<dict>
@@ -185,6 +339,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>14</integer>
+					<key>y</key>
+					<integer>54</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 			<key>walking_nw</key>
 			<dict>
@@ -196,6 +361,17 @@
 				<integer>7</integer>
 				<key>anchorY</key>
 				<integer>12</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>14</integer>
+					<key>y</key>
+					<integer>36</integer>
+					<key>width</key>
+					<integer>14</integer>
+					<key>height</key>
+					<integer>18</integer>
+				</dict>
 			</dict>
 		</dict>
 	</dict>

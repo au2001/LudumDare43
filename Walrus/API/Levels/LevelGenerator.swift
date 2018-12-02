@@ -453,8 +453,8 @@ class DebugRoadSprite: Sprite {
 
 struct GeneratorSettings {
 
-    static let DEFAULT_WIDTH: Int = 360 + (360 - 14) * 4
-    static let DEFAULT_HEIGHT: Int = 225 + (225 - 18) * 4
+    static let DEFAULT_WIDTH: Int = 360 + (360 - 14) * 3
+    static let DEFAULT_HEIGHT: Int = 225 + (225 - 18) * 3
 
     let background: Sprite = Sprite.load(name: "background") ?? Sprite.EMPTY
     let character: Sprite = Sprite.load(name: "character") ?? Sprite.EMPTY
