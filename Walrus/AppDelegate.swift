@@ -13,15 +13,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     let view = ContentView()
 
-    func applicationWillFinishLaunching(_ notification: Notification) {
-        _ = Sprite.loadAll()
-    }
-
     func applicationDidFinishLaunching(_ notification: Notification) {
         // Insert code here to initialize your application
 
         let options: [NSApplication.PresentationOptions] = [.hideDock, .hideMenuBar, .disableAppleMenu, .disableProcessSwitching, .disableHideApplication, .disableMenuBarTransparency, .fullScreen, .disableCursorLocationAssistance]
         self.view.enterFullScreenMode(NSScreen.main!, withOptions: [NSView.FullScreenModeOptionKey.fullScreenModeApplicationPresentationOptions: options])
+
+        _ = Sprite.loadAll()
     }
 
     func applicationWillTerminate(_ notification: Notification) {

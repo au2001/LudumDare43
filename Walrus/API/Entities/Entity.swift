@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class Entity: Equatable {
+class Entity: Equatable, NSCopying {
 
     static func == (lhs: Entity, rhs: Entity) -> Bool {
         return lhs.id == rhs.id
@@ -125,6 +125,10 @@ class Entity: Equatable {
         }
 
         return collisions
+    }
+
+    func copy(with zone: NSZone? = nil) -> Any {
+        return Entity(sprite: self.sprite, x: self.x, y: self.y)
     }
 
 }

@@ -384,9 +384,41 @@
 		<key>extension</key>
 		<string>png</string>
 		<key>anchorX</key>
-		<integer>64</integer>
+		<integer>36</integer>
 		<key>anchorY</key>
-		<integer>64</integer>
+		<integer>36</integer>
+	</dict>
+	<key>bush</key>
+	<dict>
+		<key>type</key>
+		<string>status</string>
+		<key>default</key>
+		<string>empty</string>
+		<key>statuses</key>
+		<dict>
+			<key>empty</key>
+			<dict>
+				<key>file</key>
+				<string>bush</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>14</integer>
+				<key>anchorY</key>
+				<integer>16</integer>
+			</dict>
+			<key>alpaca</key>
+			<dict>
+				<key>file</key>
+				<string>alpaca_bush</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>14</integer>
+				<key>anchorY</key>
+				<integer>21</integer>
+			</dict>
+		</dict>
 	</dict>
 	<key>tree1</key>
 	<dict>
@@ -651,17 +683,6 @@
 			<key>height</key>
 			<integer>64</integer>
 		</dict>
-	</dict>
-	<key>bush</key>
-	<dict>
-		<key>file</key>
-		<string>bushes</string>
-		<key>extension</key>
-		<string>png</string>
-		<key>anchorX</key>
-		<integer>16</integer>
-		<key>anchorY</key>
-		<integer>24</integer>
 	</dict>
 </dict>
 </plist>

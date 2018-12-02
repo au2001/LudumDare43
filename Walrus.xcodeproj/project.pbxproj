@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0D4218BA21B4339B005BD3DB /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4218B921B4339B005BD3DB /* PlayerEntity.swift */; };
+		0D4218BC21B43BB2005BD3DB /* alpaca_bush.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4218BB21B43BB2005BD3DB /* alpaca_bush.png */; };
+		0D4218BE21B44665005BD3DB /* BushEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4218BD21B44665005BD3DB /* BushEntity.swift */; };
 		0D863BFB21ADFAE100ACF903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D863BFA21ADFAE100ACF903 /* AppDelegate.swift */; };
 		0D863BFD21ADFAE200ACF903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D863BFC21ADFAE200ACF903 /* Assets.xcassets */; };
 		0D863C0021ADFAE200ACF903 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D863BFE21ADFAE200ACF903 /* MainMenu.xib */; };
@@ -28,11 +30,13 @@
 		0DBBF90F21B2F18E004DF752 /* TilingSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBBF90E21B2F18E004DF752 /* TilingSprite.swift */; };
 		0DBBF91621B31135004DF752 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBBF91521B31135004DF752 /* Utils.swift */; };
 		0DBBF91821B326B8004DF752 /* temple.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DBBF91721B326B8004DF752 /* temple.png */; };
-		0DBBF91A21B32FA0004DF752 /* bushes.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DBBF91921B32FA0004DF752 /* bushes.png */; };
+		0DBBF91A21B32FA0004DF752 /* bush.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DBBF91921B32FA0004DF752 /* bush.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0D4218B921B4339B005BD3DB /* PlayerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
+		0D4218BB21B43BB2005BD3DB /* alpaca_bush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpaca_bush.png; sourceTree = "<group>"; };
+		0D4218BD21B44665005BD3DB /* BushEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BushEntity.swift; sourceTree = "<group>"; };
 		0D863BF721ADFAE100ACF903 /* Walrus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Walrus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D863BFA21ADFAE100ACF903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D863BFC21ADFAE200ACF903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,7 +60,7 @@
 		0DBBF90E21B2F18E004DF752 /* TilingSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilingSprite.swift; sourceTree = "<group>"; };
 		0DBBF91521B31135004DF752 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		0DBBF91721B326B8004DF752 /* temple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temple.png; sourceTree = "<group>"; };
-		0DBBF91921B32FA0004DF752 /* bushes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bushes.png; sourceTree = "<group>"; };
+		0DBBF91921B32FA0004DF752 /* bush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bush.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +113,8 @@
 				0DB2BA9321AF3E9100135893 /* character.png */,
 				0DBBF91721B326B8004DF752 /* temple.png */,
 				0DABF58A21B2A92E00893355 /* trees.png */,
-				0DBBF91921B32FA0004DF752 /* bushes.png */,
+				0DBBF91921B32FA0004DF752 /* bush.png */,
+				0D4218BB21B43BB2005BD3DB /* alpaca_bush.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -153,6 +158,7 @@
 			children = (
 				0D863C0E21AEB9A900ACF903 /* Entity.swift */,
 				0D4218B921B4339B005BD3DB /* PlayerEntity.swift */,
+				0D4218BD21B44665005BD3DB /* BushEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -218,9 +224,10 @@
 				0D863BFD21ADFAE200ACF903 /* Assets.xcassets in Resources */,
 				0D863C0021ADFAE200ACF903 /* MainMenu.xib in Resources */,
 				0DBBF91821B326B8004DF752 /* temple.png in Resources */,
+				0D4218BC21B43BB2005BD3DB /* alpaca_bush.png in Resources */,
 				0DB2BA9221AF341700135893 /* Sprites.plist in Resources */,
 				0DB2BA8E21AF32F100135893 /* background.png in Resources */,
-				0DBBF91A21B32FA0004DF752 /* bushes.png in Resources */,
+				0DBBF91A21B32FA0004DF752 /* bush.png in Resources */,
 				0DB2BA9421AF3E9100135893 /* character.png in Resources */,
 				0DABF58B21B2A92E00893355 /* trees.png in Resources */,
 			);
@@ -237,6 +244,7 @@
 				0D91C1AA21B1CC9C0071C6AB /* LevelGenerator.swift in Sources */,
 				0D863C0921ADFB3D00ACF903 /* ContentView.swift in Sources */,
 				0D863C0F21AEB9A900ACF903 /* Entity.swift in Sources */,
+				0D4218BE21B44665005BD3DB /* BushEntity.swift in Sources */,
 				0DB2BA8C21AF2DAA00135893 /* SpriteLoader.swift in Sources */,
 				0DBBF91621B31135004DF752 /* Utils.swift in Sources */,
 				0D863C0B21AEB1CC00ACF903 /* Sprite.swift in Sources */,

@@ -20,5 +20,9 @@ class PlayerEntity: Entity {
         self.controls.tick(game: game, delta: delta)
     }
 
+    override func copy(with zone: NSZone? = nil) -> Any {
+        return PlayerEntity(sprite: self.sprite, x: self.x, y: self.y)
+    }
+
 }
 

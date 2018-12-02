@@ -18,7 +18,7 @@ class Game {
     let paintThread = DispatchQueue(label: "PaintThreadQueue")
 
     var keysDown: [UInt16] = []
-    var lastTick: TimeInterval = 0
+    var lastTick: TimeInterval = -1
 
     var pendingPaint: Set<Pixel> = []
     var painting = false
@@ -33,7 +33,7 @@ class Game {
         self.contentView = contentView
 
         for entity in level.entities {
-            self.entities.append(Entity(sprite: entity.sprite, x: entity.x, y: entity.y))
+            self.entities.append(entity.copy() as! Entity)
         }
 
         self.player = PlayerEntity(sprite: level.character, x: level.spawnX, y: level.spawnY)
@@ -44,7 +44,7 @@ class Game {
 
     func start() {
         if self.displayLink == nil {
-            self.lastTick = Date().timeIntervalSinceReferenceDate
+            self.lastTick = Date().timeIntervalSince1970
             CVDisplayLinkCreateWithActiveCGDisplays(&self.displayLink)
 
             if let displayLink = self.displayLink {
@@ -92,13 +92,15 @@ class Game {
     }
 
     func tick() {
-        let now = Date().timeIntervalSince1970
-        let delta = now - self.lastTick
-        self.lastTick = now
+        if self.lastTick >= 0 {
+            let now = Date().timeIntervalSince1970
+            let delta = now - self.lastTick
+            self.lastTick = now
 
-        self.player.tick(game: self, delta: delta)
-        for entity in self.entities {
-            entity.tick(game: self, delta: delta)
+            self.player.tick(game: self, delta: delta)
+            for entity in self.entities {
+                entity.tick(game: self, delta: delta)
+            }
         }
 
         var fullRender = false

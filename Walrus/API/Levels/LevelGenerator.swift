@@ -255,8 +255,8 @@ extension Level {
         return roads
     }
 
-    static func generateBushes(withSettings settings: GeneratorSettings, andEntities entities: [Entity], andRoads roads: Set<Pixel>) -> [Entity] {
-        var bushes: [Entity] = []
+    static func generateBushes(withSettings settings: GeneratorSettings, andEntities entities: [Entity], andRoads roads: Set<Pixel>) -> [BushEntity] {
+        var bushes: [BushEntity] = []
 
         var x = settings.bushSpacingX
         while x + settings.bushSpacingX <= settings.width {
@@ -265,7 +265,7 @@ extension Level {
                 for _ in 1...3 {
                     let rx = Int.random(in: 0..<settings.bushFuzzinessX)
                     let ry = Int.random(in: 0..<settings.bushFuzzinessY)
-                    let bush = Entity(sprite: settings.bush, x: Double(x + rx), y: Double(y + ry))
+                    let bush = BushEntity(sprite: settings.bush, x: Double(x + rx), y: Double(y + ry))
                     if !Level.isNearRoad(at: Pixel(x: x + rx, y: y + ry), withSettings: settings, andRoads: roads) {
                         continue
                     }
