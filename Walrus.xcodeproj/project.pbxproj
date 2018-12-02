@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D4218BA21B4339B005BD3DB /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4218B921B4339B005BD3DB /* PlayerEntity.swift */; };
 		0D863BFB21ADFAE100ACF903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D863BFA21ADFAE100ACF903 /* AppDelegate.swift */; };
 		0D863BFD21ADFAE200ACF903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D863BFC21ADFAE200ACF903 /* Assets.xcassets */; };
 		0D863C0021ADFAE200ACF903 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D863BFE21ADFAE200ACF903 /* MainMenu.xib */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D4218B921B4339B005BD3DB /* PlayerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
 		0D863BF721ADFAE100ACF903 /* Walrus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Walrus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D863BFA21ADFAE100ACF903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D863BFC21ADFAE200ACF903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				0D863C0E21AEB9A900ACF903 /* Entity.swift */,
+				0D4218B921B4339B005BD3DB /* PlayerEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				0D863BFB21ADFAE100ACF903 /* AppDelegate.swift in Sources */,
 				0DBBF90B21B2B951004DF752 /* CombinedSprite.swift in Sources */,
 				0D863C0D21AEB9A000ACF903 /* Game.swift in Sources */,
+				0D4218BA21B4339B005BD3DB /* PlayerEntity.swift in Sources */,
 				0DBBF90D21B2C1E9004DF752 /* StatusSprite.swift in Sources */,
 				0DB2BA8A21AF249600135893 /* Controls.swift in Sources */,
 				0D91C1A821B1C03E0071C6AB /* Level.swift in Sources */,

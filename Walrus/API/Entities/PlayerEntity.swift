@@ -2,7 +2,7 @@
 //  PlayerEntity.swift
 //  Walrus
 //
-//  Created by Aurélien on 01/12/2018.
+//  Created by Aurélien on 02/12/2018.
 //  Copyright © 2018 Walrus. All rights reserved.
 //
 
@@ -18,8 +18,6 @@ class PlayerEntity: Entity {
         }
 
         self.controls.tick(game: game, delta: delta)
-
-        super.tick(game: game, delta: delta)
     }
 
 }

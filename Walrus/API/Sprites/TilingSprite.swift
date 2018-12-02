@@ -50,6 +50,14 @@ class TilingSprite: Sprite {
         return self.tile.getColor(x: x % tile.getWidth(), y: y % tile.getHeight())
     }
 
+    override func getViewBox() -> Set<Pixel> {
+        return [] // TODO: Should be an infinite set
+    }
+
+    override func isHitBox(x: Int, y: Int, threshold: Double) -> Bool {
+        return false
+    }
+
     override func getHitBox(threshold: Double = 0.5) -> Set<Pixel> {
         return []
     }

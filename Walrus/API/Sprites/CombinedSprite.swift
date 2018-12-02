@@ -98,6 +98,23 @@ class CombinedSprite: Sprite {
         return color
     }
 
+    override func getViewBox() -> Set<Pixel> {
+        return self.hitbox0
+    }
+
+    override func isHitBox(x: Int, y: Int, threshold: Double) -> Bool {
+        if threshold == 0.5 {
+            return self.hitbox05.contains(Pixel(x: x, y: y))
+        } else if threshold == 0 {
+            return self.hitbox0.contains(Pixel(x: x, y: y))
+        } else {
+            if self.getColor(x: x, y: y).alpha > CGFloat(threshold) {
+                return true
+            }
+            return false
+        }
+    }
+
     override func getHitBox(threshold: Double = 0.5) -> Set<Pixel> {
         if threshold == 0.5 {
             return self.hitbox05

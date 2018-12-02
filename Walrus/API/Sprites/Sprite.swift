@@ -87,6 +87,23 @@ class Sprite: Equatable {
         return self.pixels[y][x]
     }
 
+    func getViewBox() -> Set<Pixel> {
+        return self.hitbox0
+    }
+
+    func isHitBox(x: Int, y: Int, threshold: Double = 0.5) -> Bool {
+        if threshold == 0.5 {
+            return self.hitbox05.contains(Pixel(x: x, y: y))
+        } else if threshold == 0 {
+            return self.hitbox0.contains(Pixel(x: x, y: y))
+        } else {
+            if self.getColor(x: x, y: y).alpha > CGFloat(threshold) {
+                return true
+            }
+            return false
+        }
+    }
+
     func getHitBox(threshold: Double = 0.5) -> Set<Pixel> {
         if threshold == 0.5 {
             return self.hitbox05
@@ -97,7 +114,7 @@ class Sprite: Equatable {
 
             for x in self.getMinX()...self.getMaxX() {
                 for y in self.getMinY()...self.getMaxY() {
-                    if self.getColor(x: x, y: y).alpha > CGFloat(threshold) {
+                    if self.isHitBox(x: x, y: y, threshold: threshold) {
                         hitbox.insert(Pixel(x: x, y: y))
                     }
                 }

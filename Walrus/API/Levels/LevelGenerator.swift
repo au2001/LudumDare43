@@ -95,6 +95,25 @@ extension Level {
     static func generateRoads(withSettings settings: GeneratorSettings, andTemples temples: [Entity]) -> Set<Pixel> {
         var roads: Set<Pixel> = []
 
+        for ry in 0...settings.roadSize / 2 {
+            for rx in 0...settings.roadSize / 2 {
+                if pow(Decimal(rx), 2) + pow(Decimal(ry), 2) > pow(Decimal(settings.roadSize) / 2, 2) {
+                    continue
+                }
+
+                roads.insert(Pixel(x: rx, y: ry))
+                if rx > 0 {
+                    roads.insert(Pixel(x: -rx, y: ry))
+                }
+                if ry > 0 {
+                    roads.insert(Pixel(x: rx, y: -ry))
+                }
+                if rx > 0 && ry > 0 {
+                    roads.insert(Pixel(x: -rx, y: -ry))
+                }
+            }
+        }
+
         for temple in temples {
             var horizontal = Bool.random()
             var x = Int(settings.spawnX), y = Int(settings.spawnY)
@@ -344,7 +363,7 @@ extension Level {
             }
 
             for otherEntity in entities {
-                if otherEntity.sprite.getColor(x: pixel.x - Int(otherEntity.x), y: pixel.y - Int(otherEntity.y)).alpha > 0.5 {
+                if otherEntity.sprite.isHitBox(x: pixel.x - Int(otherEntity.x), y: pixel.y - Int(otherEntity.y), threshold: 0.5) {
                     return false
                 }
             }
@@ -374,7 +393,7 @@ extension Level {
 //        let combinedTrees = Entity(sprite: combinedTreesSprite, x: 0, y: 0)
 //        entities.append(combinedTrees)
 
-         // entities.append(Entity(sprite: DebugRoadSprite(name: "DebugRoadSprite", pixels: roads), x: 0, y: 0))
+//        entities.append(Entity(sprite: DebugRoadSprite(name: "DebugRoadSprite", pixels: roads), x: 0, y: 0))
 
         return Level(background: settings.background, character: settings.character, spawnX: settings.spawnX, spawnY: settings.spawnY, width: settings.width, height: settings.height, entities: entities)
     }
@@ -445,6 +464,10 @@ class DebugRoadSprite: Sprite {
         return self.roadPixels.contains(Pixel(x: x + self.anchorX, y: y + self.anchorY)) ? CGColor(red: 1, green: 0, blue: 0, alpha: 0.5) : .clear
     }
 
+    override func isHitBox(x: Int, y: Int, threshold: Double) -> Bool {
+        return false
+    }
+
     override func getHitBox(threshold: Double = 0.5) -> Set<Pixel> {
         return []
     }
@@ -453,20 +476,17 @@ class DebugRoadSprite: Sprite {
 
 struct GeneratorSettings {
 
-    static let DEFAULT_WIDTH: Int = 360 + (360 - 14) * 3
-    static let DEFAULT_HEIGHT: Int = 225 + (225 - 18) * 3
-
     let background: Sprite = Sprite.load(name: "background") ?? Sprite.EMPTY
     let character: Sprite = Sprite.load(name: "character") ?? Sprite.EMPTY
     let temple: Sprite = Sprite.load(name: "temple") ?? Sprite.EMPTY
     let bush: Sprite = Sprite.load(name: "bush") ?? Sprite.EMPTY
     let tree: Sprite = Sprite.load(name: "tree1") ?? Sprite.EMPTY
 
-    let width: Int = DEFAULT_WIDTH
-    let height: Int = DEFAULT_HEIGHT
+    let width: Int = 360 + (360 - 14) * 3
+    let height: Int = 225 + (225 - 18) * 3
 
-    let spawnX: Double = Double(DEFAULT_WIDTH) / 2
-    let spawnY: Double = Double(DEFAULT_HEIGHT) / 2
+    let spawnX: Double = (360 - 14) * 2 + 180
+    let spawnY: Double = (225 - 18) * 2 + 112
 
     let templeCount: Int = 5
     let templeSpacing: Int = 0

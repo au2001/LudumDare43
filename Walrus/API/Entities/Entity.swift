@@ -45,7 +45,7 @@ class Entity: Equatable {
 
         var pixels: Set<Pixel> = []
 
-        for pixel in self.sprite.getHitBox(threshold: 0) {
+        for pixel in self.sprite.getViewBox() {
             pixels.insert(Pixel(x: pixel.x + previousX, y: pixel.y + previousY))
 
             if sprite == nil && (newX != self.previousX || newY != self.previousY) {
@@ -54,7 +54,7 @@ class Entity: Equatable {
         }
 
         if let sprite = sprite {
-            for pixel in sprite.getHitBox(threshold: 0) {
+            for pixel in sprite.getViewBox() {
                 pixels.insert(Pixel(x: pixel.x + newX, y: pixel.y + newY))
             }
             self.sprite = sprite
@@ -100,13 +100,13 @@ class Entity: Equatable {
 
         if sprite.getWidth() * sprite.getHeight() <= entity.sprite.getWidth() * entity.sprite.getHeight() {
             for pixel in sprite.getHitBox(threshold: threshold) {
-                if entity.sprite.getColor(x: Int(self.x) - Int(entity.x) + pixel.x, y: Int(self.y) - Int(entity.y) + pixel.y).alpha > CGFloat(threshold) {
+                if entity.sprite.isHitBox(x: Int(self.x) - Int(entity.x) + pixel.x, y: Int(self.y) - Int(entity.y) + pixel.y, threshold: threshold) {
                     return true
                 }
             }
         } else {
             for pixel in entity.sprite.getHitBox(threshold: threshold) {
-                if sprite.getColor(x: Int(entity.x) - Int(self.x) + pixel.x, y: Int(entity.y) - Int(self.y) + pixel.y).alpha > CGFloat(threshold) {
+                if sprite.isHitBox(x: Int(entity.x) - Int(self.x) + pixel.x, y: Int(entity.y) - Int(self.y) + pixel.y, threshold: threshold) {
                     return true
                 }
             }

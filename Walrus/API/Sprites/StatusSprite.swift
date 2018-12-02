@@ -18,6 +18,7 @@ class StatusSprite: Sprite, NSCopying {
 
     var sprites: [String: Sprite]
     var status: String?
+    var defaultStatus: String?
 
     convenience init(sprites: [String: Sprite], status: String? = nil) {
         self.init(name: "StatusSprite@" + StatusSprite.NEXT_ID, sprites: sprites, status: status)
@@ -26,6 +27,7 @@ class StatusSprite: Sprite, NSCopying {
     init(name: String, sprites: [String: Sprite], status: String? = nil) {
         self.sprites = sprites
         self.status = status
+        self.defaultStatus = status
 
         super.init(name: name, pixels: [], anchorX: 0, anchorY: 0)
     }
@@ -40,6 +42,13 @@ class StatusSprite: Sprite, NSCopying {
 
     func remove(for status: String) {
         self.sprites.removeValue(forKey: status)
+    }
+
+    func getDefault() -> Sprite? {
+        if let defaultStatus = self.defaultStatus, let sprite = self.sprites[defaultStatus] {
+            return sprite
+        }
+        return nil
     }
 
     func getCurrent() -> Sprite? {
@@ -77,8 +86,16 @@ class StatusSprite: Sprite, NSCopying {
         return self.getCurrent()?.getColor(x: x, y: y) ?? .clear
     }
 
+    override func getViewBox() -> Set<Pixel> {
+        return self.getCurrent()?.getHitBox(threshold: 0) ?? []
+    }
+
+    override func isHitBox(x: Int, y: Int, threshold: Double) -> Bool {
+        return (self.getDefault() ?? self.getCurrent())?.isHitBox(x: x, y: y, threshold: threshold) ?? false
+    }
+
     override func getHitBox(threshold: Double = 0.5) -> Set<Pixel> {
-        return self.getCurrent()?.getHitBox(threshold: threshold) ?? []
+        return (self.getDefault() ?? self.getCurrent())?.getHitBox(threshold: threshold) ?? []
     }
 
     func copy(with zone: NSZone? = nil) -> Any {

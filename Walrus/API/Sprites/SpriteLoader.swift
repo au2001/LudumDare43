@@ -65,6 +65,8 @@ extension Sprite {
                 return nil
             }
 
+            let defaultStatus = spriteInfo["default"] as? String
+
             var statuses: [String: Sprite] = [:]
 
             for status in statusesInfo.keys {
@@ -75,7 +77,7 @@ extension Sprite {
                 }
             }
 
-            let sprite = StatusSprite(name: name, sprites: statuses)
+            let sprite = StatusSprite(name: name, sprites: statuses, status: defaultStatus)
             self.loadedSprites[name] = sprite
             return sprite.copy() as! StatusSprite
 

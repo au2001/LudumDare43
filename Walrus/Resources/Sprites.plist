@@ -19,6 +19,8 @@
 	<dict>
 		<key>type</key>
 		<string>status</string>
+		<key>default</key>
+		<string>idle_s</string>
 		<key>statuses</key>
 		<dict>
 			<key>idle_s</key>
