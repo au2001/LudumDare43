@@ -18,7 +18,6 @@ class Game {
     let paintThread = DispatchQueue(label: "PaintThreadQueue")
 
     var keysDown: [UInt16] = []
-    let controls = Controls()
     var lastTick: TimeInterval = 0
 
     var pendingPaint: Set<Pixel> = []
@@ -37,7 +36,7 @@ class Game {
             self.entities.append(Entity(sprite: entity.sprite, x: entity.x, y: entity.y))
         }
 
-        self.player = Entity(sprite: level.character, x: level.spawnX, y: level.spawnY)
+        self.player = PlayerEntity(sprite: level.character, x: level.spawnX, y: level.spawnY)
 
         self.tick()
         self.render()
@@ -97,7 +96,10 @@ class Game {
         let delta = now - self.lastTick
         self.lastTick = now
 
-        self.controls.tick(game: self, delta: delta)
+        self.player.tick(game: self, delta: delta)
+        for entity in self.entities {
+            entity.tick(game: self, delta: delta)
+        }
 
         var fullRender = false
 

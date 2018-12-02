@@ -34,6 +34,8 @@ class Entity: Equatable {
         self.previousY = Int(y)
     }
 
+    func tick(game: Game, delta: TimeInterval) {}
+
     func update(game: Game, toSprite sprite: Sprite? = nil) {
         let newX = Int(self.x), newY = Int(self.y)
 
