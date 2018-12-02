@@ -10,10 +10,10 @@ import Foundation
 
 extension Level {
 
-    static func generateTemples(withSettings settings: GeneratorSettings) -> [Entity] {
+    static func generateTemples(withSettings settings: GeneratorSettings) -> [TempleEntity] {
         var placements = [Int](0..<12)
 
-        var temples: [Entity] = []
+        var temples: [TempleEntity] = []
 
         for _ in 0..<settings.templeCount {
             let x, y: Double
@@ -85,14 +85,14 @@ extension Level {
                 }
             }
 
-            let temple = Entity(sprite: settings.temple, x: x, y: y)
+            let temple = TempleEntity(sprite: settings.temple, x: x, y: y)
             temples.append(temple)
         }
 
         return temples
     }
 
-    static func generateRoads(withSettings settings: GeneratorSettings, andTemples temples: [Entity]) -> Set<Pixel> {
+    static func generateRoads(withSettings settings: GeneratorSettings, andTemples temples: [TempleEntity]) -> Set<Pixel> {
         var roads: Set<Pixel> = []
 
         for ry in 0...settings.roadSize / 2 {

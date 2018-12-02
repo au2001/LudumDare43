@@ -10,6 +10,8 @@
 		0D4218BA21B4339B005BD3DB /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4218B921B4339B005BD3DB /* PlayerEntity.swift */; };
 		0D4218BC21B43BB2005BD3DB /* alpaca_bush.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4218BB21B43BB2005BD3DB /* alpaca_bush.png */; };
 		0D4218BE21B44665005BD3DB /* BushEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4218BD21B44665005BD3DB /* BushEntity.swift */; };
+		0D4218C021B45986005BD3DB /* TempleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4218BF21B45986005BD3DB /* TempleEntity.swift */; };
+		0D4218C221B45B54005BD3DB /* character_carrying.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4218C121B45B54005BD3DB /* character_carrying.png */; };
 		0D863BFB21ADFAE100ACF903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D863BFA21ADFAE100ACF903 /* AppDelegate.swift */; };
 		0D863BFD21ADFAE200ACF903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D863BFC21ADFAE200ACF903 /* Assets.xcassets */; };
 		0D863C0021ADFAE200ACF903 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D863BFE21ADFAE200ACF903 /* MainMenu.xib */; };
@@ -37,6 +39,8 @@
 		0D4218B921B4339B005BD3DB /* PlayerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
 		0D4218BB21B43BB2005BD3DB /* alpaca_bush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpaca_bush.png; sourceTree = "<group>"; };
 		0D4218BD21B44665005BD3DB /* BushEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BushEntity.swift; sourceTree = "<group>"; };
+		0D4218BF21B45986005BD3DB /* TempleEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempleEntity.swift; sourceTree = "<group>"; };
+		0D4218C121B45B54005BD3DB /* character_carrying.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_carrying.png; sourceTree = "<group>"; };
 		0D863BF721ADFAE100ACF903 /* Walrus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Walrus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D863BFA21ADFAE100ACF903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D863BFC21ADFAE200ACF903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 				0DB2BA9121AF341700135893 /* Sprites.plist */,
 				0DB2BA8D21AF32F000135893 /* background.png */,
 				0DB2BA9321AF3E9100135893 /* character.png */,
+				0D4218C121B45B54005BD3DB /* character_carrying.png */,
 				0DBBF91721B326B8004DF752 /* temple.png */,
 				0DABF58A21B2A92E00893355 /* trees.png */,
 				0DBBF91921B32FA0004DF752 /* bush.png */,
@@ -159,6 +164,7 @@
 				0D863C0E21AEB9A900ACF903 /* Entity.swift */,
 				0D4218B921B4339B005BD3DB /* PlayerEntity.swift */,
 				0D4218BD21B44665005BD3DB /* BushEntity.swift */,
+				0D4218BF21B45986005BD3DB /* TempleEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -227,6 +233,7 @@
 				0D4218BC21B43BB2005BD3DB /* alpaca_bush.png in Resources */,
 				0DB2BA9221AF341700135893 /* Sprites.plist in Resources */,
 				0DB2BA8E21AF32F100135893 /* background.png in Resources */,
+				0D4218C221B45B54005BD3DB /* character_carrying.png in Resources */,
 				0DBBF91A21B32FA0004DF752 /* bush.png in Resources */,
 				0DB2BA9421AF3E9100135893 /* character.png in Resources */,
 				0DABF58B21B2A92E00893355 /* trees.png in Resources */,
@@ -250,6 +257,7 @@
 				0D863C0B21AEB1CC00ACF903 /* Sprite.swift in Sources */,
 				0D863BFB21ADFAE100ACF903 /* AppDelegate.swift in Sources */,
 				0DBBF90B21B2B951004DF752 /* CombinedSprite.swift in Sources */,
+				0D4218C021B45986005BD3DB /* TempleEntity.swift in Sources */,
 				0D863C0D21AEB9A000ACF903 /* Game.swift in Sources */,
 				0D4218BA21B4339B005BD3DB /* PlayerEntity.swift in Sources */,
 				0DBBF90D21B2C1E9004DF752 /* StatusSprite.swift in Sources */,

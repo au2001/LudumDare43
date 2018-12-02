@@ -13,6 +13,7 @@ let RIGHT_KEY: UInt16 = 124
 let UP_KEY: UInt16 = 126
 let DOWN_KEY: UInt16 = 125
 let SPEED = 30.0
+let RANGE = 16
 let SQRT_2 = sqrt(2)
 
 class Controls {
@@ -40,9 +41,9 @@ class Controls {
         }
 
         if moveX == 0 && moveY == 0 {
-            if (game.player.sprite as! StatusSprite).status != "idle_" + self.direction {
+            if (game.player.sprite as! StatusSprite).status != (game.player.carrying ? "carrying_" : "") + "idle_" + self.direction {
                 let newSprite = (game.player.sprite as! StatusSprite).copy() as! StatusSprite
-                newSprite.status = "idle_" + self.direction
+                newSprite.status = (game.player.carrying ? "carrying_" : "") + "idle_" + self.direction
 
                 for _ in game.player.getCollisions(game: game, withSprite: newSprite) {
                     return
@@ -119,9 +120,9 @@ class Controls {
                 }
             }
 
-            if (game.player.sprite as! StatusSprite).status != "walking_" + newDirection {
+            if (game.player.sprite as! StatusSprite).status != (game.player.carrying ? "carrying_" : "") + "walking_" + newDirection {
                 let newSprite = (game.player.sprite as! StatusSprite).copy() as! StatusSprite
-                newSprite.status = "walking_" + newDirection
+                newSprite.status = (game.player.carrying ? "carrying_" : "") + "walking_" + newDirection
 
                 for _ in game.player.getCollisions(game: game, withSprite: newSprite) {
                     game.player.x = previouxX
@@ -140,6 +141,84 @@ class Controls {
 
                 game.player.update(game: game)
             }
+        }
+    }
+
+    func keyPress(game: Game, key: UInt16) {
+        switch key {
+        case 49:
+            var moveX = 0.0, moveY = 0.0
+            switch self.direction {
+            case "s":
+                moveY = 1
+
+            case "n":
+                moveY = -1
+
+            case "e":
+                moveX = 1
+
+            case "w":
+                moveX = -1
+
+            case "se":
+                moveX = 1 / SQRT_2
+                moveY = 1 / SQRT_2
+
+            case "ne":
+                moveX = -1 / SQRT_2
+                moveY = 1 / SQRT_2
+
+            case "sw":
+                moveX = 1 / SQRT_2
+                moveY = -1 / SQRT_2
+
+            case "nw":
+                moveX = -1 / SQRT_2
+                moveY = -1 / SQRT_2
+
+            default:
+                break
+            }
+
+            if !game.player.carrying {
+                let bushes = game.entities.compactMap { (entity) -> BushEntity? in
+                    return entity as? BushEntity
+                    }.filter { (bush) -> Bool in
+                        return bush.alpaca
+                }
+
+                for i in 1...RANGE {
+                    let pixel = Pixel(x: Int(game.player.x + Double(i) * moveX), y: Int(game.player.y + Double(i) * moveY))
+                    for bush in bushes {
+                        if bush.sprite.isHitBox(x: pixel.x - Int(bush.x), y: pixel.y - Int(bush.y)) {
+                            game.player.carrying = true
+                            bush.setAlpaca(present: false, inGame: game)
+                            return
+                        }
+                    }
+                }
+            } else {
+                let temples = game.entities.compactMap { (entity) -> TempleEntity? in
+                    return entity as? TempleEntity
+                }.filter { (temple) -> Bool in
+                    return !temple.burning
+                }
+
+                for i in 1...RANGE {
+                    let pixel = Pixel(x: Int(game.player.x + Double(i) * moveX), y: Int(game.player.y + Double(i) * moveY))
+                    for temple in temples {
+                        if temple.sprite.isHitBox(x: pixel.x - Int(temple.x), y: pixel.y - Int(temple.y)) {
+                            game.player.carrying = false
+                            temple.setBurning(burning: false, inGame: game)
+                            return
+                        }
+                    }
+                }
+            }
+
+        default:
+            break
         }
     }
 

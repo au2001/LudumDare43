@@ -11,6 +11,7 @@ import Cocoa
 class PlayerEntity: Entity {
 
     let controls = Controls()
+    var carrying = false
 
     override func tick(game: Game, delta: TimeInterval) {
         if delta <= 0 {

@@ -26,7 +26,7 @@ class Game {
     var entities: [Entity] = []
     var cameraOffsetX = 0, cameraOffsetY = 0
 
-    let player: Entity
+    let player: PlayerEntity
 
     init(level: Level, contentView: ContentView) {
         self.level = level
@@ -73,7 +73,9 @@ class Game {
         self.displayLink = nil
     }
 
-    func keyPress(event: NSEvent) {}
+    func keyPress(event: NSEvent) {
+        self.player.controls.keyPress(game: self, key: event.keyCode)
+    }
 
     func keyDown(event: NSEvent) {
         if self.keysDown.contains(event.keyCode) {
