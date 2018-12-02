@@ -58,7 +58,7 @@ class Sprite: Equatable {
     }
 
     func getColor(x: Int, y: Int) -> CGColor {
-        let x = x + anchorX, y = y + anchorY
+        let x = x + self.anchorX, y = y + self.anchorY
 
         if x < 0 || x >= self.getWidth() || y < 0 || y >= self.getHeight() {
             return .clear
