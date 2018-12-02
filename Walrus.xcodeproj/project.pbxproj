@@ -129,10 +129,10 @@
 			isa = PBXGroup;
 			children = (
 				0D863C0A21AEB1CC00ACF903 /* Sprite.swift */,
-				0DB2BA8B21AF2DAA00135893 /* SpriteLoader.swift */,
 				0DBBF90C21B2C1E9004DF752 /* StatusSprite.swift */,
 				0DBBF90E21B2F18E004DF752 /* TilingSprite.swift */,
 				0DBBF90A21B2B951004DF752 /* CombinedSprite.swift */,
+				0DB2BA8B21AF2DAA00135893 /* SpriteLoader.swift */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";

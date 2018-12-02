@@ -19,44 +19,62 @@ class Sprite: Equatable {
     let name: String
     let pixels: [[CGColor]]
     let anchorX, anchorY: Int
+    let width, height: Int
+    let minX, minY, maxX, maxY: Int
+    var hitbox0: Set<Pixel> = [], hitbox05: Set<Pixel> = []
 
     init(name: String, pixels: [[CGColor]], anchorX: Int, anchorY: Int) {
         self.name = name
         self.pixels = pixels
         self.anchorX = anchorX
         self.anchorY = anchorY
+
+        self.width = pixels.first?.count ?? 0
+        self.height = pixels.count
+
+        self.minX = -self.anchorX
+        self.minY = -self.anchorY
+
+        self.maxX = self.width > 0 ? self.width - self.anchorX - 1 : self.minX
+        self.maxY = self.height > 0 ? self.height - self.anchorY - 1 : self.minY
+
+        for x in self.minX...self.maxX {
+            for y in self.minY...self.maxY {
+                let color = self.getColor(x: x, y: y)
+                if color.alpha > 0.5 {
+                    let pixel = Pixel(x: x, y: y)
+                    self.hitbox0.insert(pixel)
+                    self.hitbox05.insert(pixel)
+                } else if color.alpha > 0 {
+                    let pixel = Pixel(x: x, y: y)
+                    self.hitbox0.insert(pixel)
+                }
+            }
+        }
     }
 
     func getWidth() -> Int {
-        return pixels.first?.count ?? 0
+        return self.width
     }
 
     func getHeight() -> Int {
-        return pixels.count
+        return self.height
     }
 
     func getMinX() -> Int {
-        return -self.anchorX
+        return self.minX
     }
 
     func getMinY() -> Int {
-        return -self.anchorY
+        return self.minY
     }
 
     func getMaxX() -> Int {
-        let width = self.getWidth()
-        if width <= 0 {
-            return self.getMinX()
-        }
-        return width - self.anchorX - 1
+        return self.maxX
     }
 
     func getMaxY() -> Int {
-        let height = self.getHeight()
-        if height <= 0 {
-            return self.getMinY()
-        }
-        return height - self.anchorY - 1
+        return self.maxY
     }
 
     func getColor(x: Int, y: Int) -> CGColor {
@@ -70,17 +88,23 @@ class Sprite: Equatable {
     }
 
     func getHitBox(threshold: Double = 0.5) -> Set<Pixel> {
-        var hitbox: Set<Pixel> = []
+        if threshold == 0.5 {
+            return self.hitbox05
+        } else if threshold == 0 {
+            return self.hitbox0
+        } else {
+            var hitbox: Set<Pixel> = []
 
-        for x in self.getMinX()...self.getMaxX() {
-            for y in self.getMinY()...self.getMaxY() {
-                if self.getColor(x: x, y: y).alpha > CGFloat(threshold) {
-                    hitbox.insert(Pixel(x: x, y: y))
+            for x in self.getMinX()...self.getMaxX() {
+                for y in self.getMinY()...self.getMaxY() {
+                    if self.getColor(x: x, y: y).alpha > CGFloat(threshold) {
+                        hitbox.insert(Pixel(x: x, y: y))
+                    }
                 }
             }
-        }
 
-        return hitbox
+            return hitbox
+        }
     }
 
 }
