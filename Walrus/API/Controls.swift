@@ -202,7 +202,7 @@ class Controls {
                 let temples = game.entities.compactMap { (entity) -> TempleEntity? in
                     return entity as? TempleEntity
                 }.filter { (temple) -> Bool in
-                    return !temple.burning
+                    return !temple.sacrificing
                 }
 
                 for i in 1...RANGE {
@@ -210,7 +210,7 @@ class Controls {
                     for temple in temples {
                         if temple.sprite.isHitBox(x: pixel.x - Int(temple.x), y: pixel.y - Int(temple.y)) {
                             game.player.carrying = false
-                            temple.setBurning(burning: false, inGame: game)
+                            temple.setSacrificing(sacrificing: true, inGame: game)
                             return
                         }
                     }

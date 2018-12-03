@@ -806,14 +806,57 @@
 	</dict>
 	<key>temple</key>
 	<dict>
-		<key>file</key>
-		<string>temple</string>
-		<key>extension</key>
-		<string>png</string>
-		<key>anchorX</key>
-		<integer>36</integer>
-		<key>anchorY</key>
-		<integer>36</integer>
+		<key>type</key>
+		<string>status</string>
+		<key>default</key>
+		<string>available</string>
+		<key>statuses</key>
+		<dict>
+			<key>available</key>
+			<dict>
+				<key>file</key>
+				<string>temple</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>33</integer>
+				<key>anchorY</key>
+				<integer>33</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>0</integer>
+					<key>y</key>
+					<integer>0</integer>
+					<key>width</key>
+					<integer>66</integer>
+					<key>height</key>
+					<integer>66</integer>
+				</dict>
+			</dict>
+			<key>sacrificing</key>
+			<dict>
+				<key>file</key>
+				<string>temple</string>
+				<key>extension</key>
+				<string>png</string>
+				<key>anchorX</key>
+				<integer>33</integer>
+				<key>anchorY</key>
+				<integer>33</integer>
+				<key>crop</key>
+				<dict>
+					<key>x</key>
+					<integer>66</integer>
+					<key>y</key>
+					<integer>0</integer>
+					<key>width</key>
+					<integer>66</integer>
+					<key>height</key>
+					<integer>66</integer>
+				</dict>
+			</dict>
+		</dict>
 	</dict>
 	<key>bush</key>
 	<dict>
