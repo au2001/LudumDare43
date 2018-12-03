@@ -30,10 +30,12 @@ class CombinedSprite: Sprite {
 
         var combinedMinX = Int.max, combinedMinY = Int.max, combinedMaxX = 0, combinedMaxY = 0
         for (sprite, position) in self.sprites {
-            combinedMinX = min(sprite.getMinX() + position.x, combinedMinX)
-            combinedMinY = min(sprite.getMinY() + position.y, combinedMinY)
-            combinedMaxX = max(sprite.getMaxX() + position.x, combinedMaxX)
-            combinedMaxY = max(sprite.getMaxY() + position.y, combinedMaxY)
+            if sprite as? TilingSprite == nil {
+                combinedMinX = min(sprite.getMinX() + position.x, combinedMinX)
+                combinedMinY = min(sprite.getMinY() + position.y, combinedMinY)
+                combinedMaxX = max(sprite.getMaxX() + position.x, combinedMaxX)
+                combinedMaxY = max(sprite.getMaxY() + position.y, combinedMaxY)
+            }
 
             for pixel in sprite.getHitBox(threshold: 0) {
                 self.combinedHitbox0.insert(Pixel(x: pixel.x + position.x, y: pixel.y + position.y))
@@ -43,12 +45,26 @@ class CombinedSprite: Sprite {
                 self.combinedHitbox05.insert(Pixel(x: pixel.x + position.x, y: pixel.y + position.y))
             }
         }
-        self.combinedWidth = combinedMaxX - combinedMinX
-        self.combinedHeight = combinedMaxY - combinedMinY
-        self.combinedMinX = combinedMinX
-        self.combinedMinY = combinedMinY
-        self.combinedMaxX = combinedMaxX
-        self.combinedMaxY = combinedMaxY
+
+        if combinedMaxX < combinedMinX {
+            self.combinedWidth = sprites.isEmpty ? 0 : Int.max
+            self.combinedMinX = sprites.isEmpty ? 0 : Int.min
+            self.combinedMaxX = sprites.isEmpty ? 0 : Int.max
+        } else {
+            self.combinedWidth = combinedMaxX - combinedMinX
+            self.combinedMinX = combinedMinX
+            self.combinedMaxX = combinedMaxX
+        }
+
+        if combinedMaxY < combinedMinY {
+            self.combinedHeight = sprites.isEmpty ? 0 : Int.max
+            self.combinedMinY = sprites.isEmpty ? 0 : Int.min
+            self.combinedMaxY = sprites.isEmpty ? 0 : Int.max
+        } else {
+            self.combinedHeight = combinedMaxY - combinedMinY
+            self.combinedMinY = combinedMinY
+            self.combinedMaxY = combinedMaxY
+        }
 
         super.init(name: name, pixels: [], anchorX: 0, anchorY: 0)
     }

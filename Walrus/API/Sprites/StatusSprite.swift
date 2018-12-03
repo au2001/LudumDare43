@@ -87,7 +87,7 @@ class StatusSprite: Sprite, NSCopying {
     }
 
     override func getViewBox() -> Set<Pixel> {
-        return self.getCurrent()?.getHitBox(threshold: 0) ?? []
+        return self.getCurrent()?.getViewBox() ?? []
     }
 
     override func isHitBox(x: Int, y: Int, threshold: Double) -> Bool {
