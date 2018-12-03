@@ -11,11 +11,14 @@ import Cocoa
 class GameMenu: Interface {
 
     let contentView: ContentView
+    let score: Int
 
     let background: Sprite
     let logo: Sprite
     let playButton: Sprite
     let quitButton: Sprite
+
+    let scoreText: NSTextField?
 
     let pixelSize: Int
     let offsetX, offsetY: Int
@@ -28,10 +31,29 @@ class GameMenu: Interface {
 
     var clicked: String?
 
-    required init(contentView: ContentView) {
-        self.contentView = contentView
+    required convenience init(contentView: ContentView) {
+        self.init(score: -1, contentView: contentView)
+    }
 
-        self.background = Sprite.load(name: "background") ?? Sprite.EMPTY
+    init(score: Int, contentView: ContentView) {
+        self.contentView = contentView
+        self.score = score
+
+        self.background = CombinedSprite(sprites: [
+            (sprite: Sprite.load(name: "background") ?? Sprite.EMPTY, position: Pixel(x: 0, y: 0)),
+            (sprite: Sprite.load(name: "tree1") ?? Sprite.EMPTY, position: Pixel(x: 50, y: 60)),
+            (sprite: Sprite.load(name: "tree1") ?? Sprite.EMPTY, position: Pixel(x: 90, y: 120)),
+            (sprite: Sprite.load(name: "tree1") ?? Sprite.EMPTY, position: Pixel(x: 130, y: 40)),
+            (sprite: Sprite.load(name: "tree1") ?? Sprite.EMPTY, position: Pixel(x: 200, y: 100)),
+            (sprite: Sprite.load(name: "tree1") ?? Sprite.EMPTY, position: Pixel(x: 230, y: 50)),
+            (sprite: Sprite.load(name: "tree1") ?? Sprite.EMPTY, position: Pixel(x: 310, y: 110)),
+            (sprite: Sprite.load(name: "tree1") ?? Sprite.EMPTY, position: Pixel(x: 320, y: 50)),
+            (sprite: Sprite.load(name: "tree1") ?? Sprite.EMPTY, position: Pixel(x: 60, y: 180)),
+            (sprite: Sprite.load(name: "tree1") ?? Sprite.EMPTY, position: Pixel(x: 140, y: 200)),
+            (sprite: Sprite.load(name: "tree1") ?? Sprite.EMPTY, position: Pixel(x: 210, y: 210)),
+            (sprite: Sprite.load(name: "tree1") ?? Sprite.EMPTY, position: Pixel(x: 260, y: 160)),
+            (sprite: Sprite.load(name: "tree1") ?? Sprite.EMPTY, position: Pixel(x: 320, y: 190))
+        ])
         self.logo = Sprite.load(name: "logo") ?? Sprite.EMPTY
         self.playButton = Sprite.load(name: "play_button") ?? Sprite.EMPTY
         self.quitButton = Sprite.load(name: "quit_button") ?? Sprite.EMPTY
@@ -39,6 +61,17 @@ class GameMenu: Interface {
         self.pixelSize = Int(max(floor(min(self.contentView.frame.width / CGFloat(self.contentView.width), self.contentView.frame.height / CGFloat(self.contentView.height))), 1))
         self.offsetX = Int((self.contentView.frame.width - CGFloat(self.pixelSize * self.contentView.width)) / 2)
         self.offsetY = Int((self.contentView.frame.height - CGFloat(self.pixelSize * self.contentView.height)) / 2)
+
+        if score >= 0 {
+            let y = self.contentView.frame.height * CGFloat(self.contentView.height - 120) / CGFloat(self.contentView.height) - CGFloat(self.offsetX)
+            self.scoreText = NSTextField(labelWithString: "You scored: " + String(describing: score))
+            self.scoreText?.font = NSFont(name: "Herculanum", size: 54)
+            self.scoreText?.frame = NSRect(x: 0, y: y, width: self.contentView.frame.width, height: CGFloat(50 * self.pixelSize))
+            self.scoreText?.alignment = .center
+            self.contentView.addSubview(self.scoreText!)
+        } else {
+            self.scoreText = nil
+        }
 
         self.render()
         self.start()
@@ -62,6 +95,7 @@ class GameMenu: Interface {
     }
 
     func stop() {
+        self.scoreText?.removeFromSuperview()
         if let displayLink = self.displayLink {
             CVDisplayLinkStop(displayLink)
         }
@@ -69,7 +103,7 @@ class GameMenu: Interface {
     }
 
     func keyPress(event: NSEvent) {
-        // TODO
+        // TODO: Control menu with arrow keys
     }
 
     func keyDown(event: NSEvent) {}

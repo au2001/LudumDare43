@@ -19,12 +19,14 @@ class Game: Interface {
 
     var keysDown: [UInt16] = []
     var lastTick: TimeInterval = -1
+    var timeLeft: TimeInterval = 5 * 60
 
     var pendingPaint: Set<Pixel> = []
     var painting = false
 
     var entities: [Entity] = []
     var cameraOffsetX = 0, cameraOffsetY = 0
+    var score = 0
 
     let player: PlayerEntity
 
@@ -74,6 +76,9 @@ class Game: Interface {
     }
 
     func stop() {
+        self.timer?.invalidate()
+        self.timer = nil
+
         if let displayLink = self.displayLink {
             CVDisplayLinkStop(displayLink)
         }
@@ -109,6 +114,14 @@ class Game: Interface {
             let now = Date().timeIntervalSince1970
             let delta = now - self.lastTick
             self.lastTick = now
+
+            self.timeLeft -= delta
+
+            if self.timeLeft <= 0 {
+                self.stop()
+                self.contentView.interface = GameMenu(score: self.score, contentView: self.contentView)
+                return
+            }
 
             self.player.tick(game: self, delta: delta)
             for entity in self.entities {

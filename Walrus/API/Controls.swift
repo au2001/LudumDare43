@@ -12,7 +12,7 @@ let LEFT_KEY: UInt16 = 123
 let RIGHT_KEY: UInt16 = 124
 let UP_KEY: UInt16 = 126
 let DOWN_KEY: UInt16 = 125
-let SPEED = 30.0
+let SPEED = 50.0
 let RANGE = 16
 let SQRT_2 = sqrt(2)
 
@@ -211,6 +211,7 @@ class Controls {
                         if temple.sprite.isHitBox(x: pixel.x - Int(temple.x), y: pixel.y - Int(temple.y)) {
                             game.player.carrying = false
                             temple.setSacrificing(sacrificing: true, inGame: game)
+                            game.score += 1
                             return
                         }
                     }
