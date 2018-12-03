@@ -13,6 +13,9 @@ class Game: Interface {
     let level: Level
     let contentView: ContentView
 
+    let scoreText: NSTextField
+    let timerText: NSTextField
+
     var timer: Timer?
     var displayLink: CVDisplayLink?
     let paintThread = DispatchQueue(label: "PaintThreadQueue")
@@ -46,6 +49,22 @@ class Game: Interface {
 
         self.player = PlayerEntity(sprite: level.character, x: level.spawnX, y: level.spawnY)
 
+        let pixelSize = max(floor(min(self.contentView.frame.width / CGFloat(self.contentView.width), self.contentView.frame.height / CGFloat(self.contentView.height))), 1)
+        let offsetX = (self.contentView.frame.width - pixelSize * CGFloat(self.contentView.width)) / 2
+        let offsetY = (self.contentView.frame.height - pixelSize * CGFloat(self.contentView.height)) / 2
+
+        self.scoreText = NSTextField(labelWithString: "Score: " + String(describing: self.score))
+        self.scoreText.font = NSFont(name: "Herculanum", size: 12 * pixelSize)
+        self.scoreText.frame = NSRect(x: offsetX, y: self.contentView.frame.height - 50 * pixelSize - offsetY, width: self.contentView.frame.width - 2 * offsetX, height: CGFloat(50 * pixelSize))
+        self.scoreText.alignment = .left
+        self.contentView.addSubview(self.scoreText)
+
+        self.timerText = NSTextField(labelWithString: "Time left: " + String(describing: Int(self.timeLeft)))
+        self.timerText.font = NSFont(name: "Herculanum", size: 12 * pixelSize)
+        self.timerText.frame = NSRect(x: offsetX, y: self.contentView.frame.height - 50 * pixelSize - offsetY, width: self.contentView.frame.width - 2 * offsetX, height: CGFloat(50 * pixelSize))
+        self.timerText.alignment = .right
+        self.contentView.addSubview(self.timerText)
+
         self.tick()
         self.render()
         self.start()
@@ -76,6 +95,9 @@ class Game: Interface {
     }
 
     func stop() {
+        self.scoreText.removeFromSuperview()
+        self.timerText.removeFromSuperview()
+
         self.timer?.invalidate()
         self.timer = nil
 
@@ -116,6 +138,9 @@ class Game: Interface {
             self.lastTick = now
 
             self.timeLeft -= delta
+
+            self.scoreText.stringValue = "Score: " + String(describing: self.score)
+            self.timerText.stringValue = "Time left: " + String(describing: Int(self.timeLeft))
 
             if self.timeLeft <= 0 {
                 self.stop()

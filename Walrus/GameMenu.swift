@@ -65,8 +65,8 @@ class GameMenu: Interface {
         if score >= 0 {
             let y = self.contentView.frame.height * CGFloat(self.contentView.height - 120) / CGFloat(self.contentView.height) - CGFloat(self.offsetX)
             self.scoreText = NSTextField(labelWithString: "You scored: " + String(describing: score))
-            self.scoreText?.font = NSFont(name: "Herculanum", size: 54)
-            self.scoreText?.frame = NSRect(x: 0, y: y, width: self.contentView.frame.width, height: CGFloat(50 * self.pixelSize))
+            self.scoreText?.font = NSFont(name: "Herculanum", size: CGFloat(14 * self.pixelSize))
+            self.scoreText?.frame = NSRect(x: CGFloat(self.offsetX), y: y, width: self.contentView.frame.width - CGFloat(2 * self.offsetX), height: CGFloat(50 * self.pixelSize))
             self.scoreText?.alignment = .center
             self.contentView.addSubview(self.scoreText!)
         } else {
