@@ -10,13 +10,14 @@ import Cocoa
 
 class ContentView: NSImageView {
 
-    var game: Game?
+    var interface: Interface?
 
     let width = 360, height = 225
     var pixels: [[CGColor]] = []
 
     override func viewDidMoveToWindow() {
         self.wantsLayer = true
+        self.window?.acceptsMouseMovedEvents = true
 
         for y in 0..<height {
             self.pixels.append([])
@@ -25,10 +26,7 @@ class ContentView: NSImageView {
             }
         }
 
-        let settings = GeneratorSettings()
-        let level = Level.generate(withSettings: settings)
-        self.game = Game.init(level: level, contentView: self)
-        self.game?.start()
+        self.interface = GameMenu(contentView: self)
     }
 
     func paint(x: Int, y: Int, color: CGColor, absolute: Bool = false, update: Bool = true) {
@@ -114,14 +112,26 @@ class ContentView: NSImageView {
 
     override func keyDown(with event: NSEvent) {
         if !event.isARepeat {
-            self.game?.keyDown(event: event)
+            self.interface?.keyDown(event: event)
         }
 
-        self.game?.keyPress(event: event)
+        self.interface?.keyPress(event: event)
     }
 
     override func keyUp(with event: NSEvent) {
-        self.game?.keyUp(event: event)
+        self.interface?.keyUp(event: event)
+    }
+
+    override func mouseMoved(with event: NSEvent) {
+        self.interface?.mouseMoved(event: event)
+    }
+
+    override func mouseDown(with event: NSEvent) {
+        self.interface?.mouseDown(event: event)
+    }
+
+    override func mouseUp(with event: NSEvent) {
+        self.interface?.mouseUp(event: event)
     }
 
     override func draw(_ rect: NSRect) {

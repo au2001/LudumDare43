@@ -22,6 +22,13 @@
 		0D91C1A821B1C03E0071C6AB /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D91C1A721B1C03E0071C6AB /* Level.swift */; };
 		0D91C1AA21B1CC9C0071C6AB /* LevelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D91C1A921B1CC9C0071C6AB /* LevelGenerator.swift */; };
 		0DABF58B21B2A92E00893355 /* trees.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DABF58A21B2A92E00893355 /* trees.png */; };
+		0DB16DE521B57013006F51A1 /* GameMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB16DE421B57013006F51A1 /* GameMenu.swift */; };
+		0DB16DE721B57043006F51A1 /* Interface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB16DE621B57043006F51A1 /* Interface.swift */; };
+		0DB16DE921B59346006F51A1 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DB16DE821B59346006F51A1 /* logo.png */; };
+		0DB16DEE21B59918006F51A1 /* quit.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DB16DEA21B59918006F51A1 /* quit.png */; };
+		0DB16DEF21B59918006F51A1 /* play_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DB16DEB21B59918006F51A1 /* play_hover.png */; };
+		0DB16DF021B59918006F51A1 /* quit_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DB16DEC21B59918006F51A1 /* quit_hover.png */; };
+		0DB16DF121B59918006F51A1 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DB16DED21B59918006F51A1 /* play.png */; };
 		0DB2BA8A21AF249600135893 /* Controls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2BA8921AF249600135893 /* Controls.swift */; };
 		0DB2BA8C21AF2DAA00135893 /* SpriteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2BA8B21AF2DAA00135893 /* SpriteLoader.swift */; };
 		0DB2BA8E21AF32F100135893 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2BA8D21AF32F000135893 /* background.png */; };
@@ -54,6 +61,13 @@
 		0D91C1A721B1C03E0071C6AB /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		0D91C1A921B1CC9C0071C6AB /* LevelGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGenerator.swift; sourceTree = "<group>"; };
 		0DABF58A21B2A92E00893355 /* trees.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trees.png; sourceTree = "<group>"; };
+		0DB16DE421B57013006F51A1 /* GameMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMenu.swift; sourceTree = "<group>"; };
+		0DB16DE621B57043006F51A1 /* Interface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interface.swift; sourceTree = "<group>"; };
+		0DB16DE821B59346006F51A1 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		0DB16DEA21B59918006F51A1 /* quit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quit.png; sourceTree = "<group>"; };
+		0DB16DEB21B59918006F51A1 /* play_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_hover.png; sourceTree = "<group>"; };
+		0DB16DEC21B59918006F51A1 /* quit_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quit_hover.png; sourceTree = "<group>"; };
+		0DB16DED21B59918006F51A1 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		0DB2BA8921AF249600135893 /* Controls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controls.swift; sourceTree = "<group>"; };
 		0DB2BA8B21AF2DAA00135893 /* SpriteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteLoader.swift; sourceTree = "<group>"; };
 		0DB2BA8D21AF32F000135893 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -99,6 +113,7 @@
 			children = (
 				0D863BFA21ADFAE100ACF903 /* AppDelegate.swift */,
 				0D863C0821ADFB3D00ACF903 /* ContentView.swift */,
+				0DB16DE421B57013006F51A1 /* GameMenu.swift */,
 				0DB2BA9021AF332700135893 /* API */,
 				0D863BFC21ADFAE200ACF903 /* Assets.xcassets */,
 				0D863BFE21ADFAE200ACF903 /* MainMenu.xib */,
@@ -113,6 +128,11 @@
 			isa = PBXGroup;
 			children = (
 				0DB2BA9121AF341700135893 /* Sprites.plist */,
+				0DB16DE821B59346006F51A1 /* logo.png */,
+				0DB16DED21B59918006F51A1 /* play.png */,
+				0DB16DEB21B59918006F51A1 /* play_hover.png */,
+				0DB16DEA21B59918006F51A1 /* quit.png */,
+				0DB16DEC21B59918006F51A1 /* quit_hover.png */,
 				0DB2BA8D21AF32F000135893 /* background.png */,
 				0DB2BA9321AF3E9100135893 /* character.png */,
 				0D4218C121B45B54005BD3DB /* character_carrying.png */,
@@ -127,6 +147,7 @@
 		0DB2BA9021AF332700135893 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				0DB16DE621B57043006F51A1 /* Interface.swift */,
 				0D863C0C21AEB9A000ACF903 /* Game.swift */,
 				0DB2BA8921AF249600135893 /* Controls.swift */,
 				0DBBF91521B31135004DF752 /* Utils.swift */,
@@ -229,11 +250,16 @@
 			files = (
 				0D863BFD21ADFAE200ACF903 /* Assets.xcassets in Resources */,
 				0D863C0021ADFAE200ACF903 /* MainMenu.xib in Resources */,
+				0DB16DEE21B59918006F51A1 /* quit.png in Resources */,
+				0DB16DE921B59346006F51A1 /* logo.png in Resources */,
+				0DB16DEF21B59918006F51A1 /* play_hover.png in Resources */,
 				0DBBF91821B326B8004DF752 /* temple.png in Resources */,
 				0D4218BC21B43BB2005BD3DB /* alpaca_bush.png in Resources */,
+				0DB16DF021B59918006F51A1 /* quit_hover.png in Resources */,
 				0DB2BA9221AF341700135893 /* Sprites.plist in Resources */,
 				0DB2BA8E21AF32F100135893 /* background.png in Resources */,
 				0D4218C221B45B54005BD3DB /* character_carrying.png in Resources */,
+				0DB16DF121B59918006F51A1 /* play.png in Resources */,
 				0DBBF91A21B32FA0004DF752 /* bush.png in Resources */,
 				0DB2BA9421AF3E9100135893 /* character.png in Resources */,
 				0DABF58B21B2A92E00893355 /* trees.png in Resources */,
@@ -249,6 +275,8 @@
 			files = (
 				0DBBF90F21B2F18E004DF752 /* TilingSprite.swift in Sources */,
 				0D91C1AA21B1CC9C0071C6AB /* LevelGenerator.swift in Sources */,
+				0DB16DE521B57013006F51A1 /* GameMenu.swift in Sources */,
+				0DB16DE721B57043006F51A1 /* Interface.swift in Sources */,
 				0D863C0921ADFB3D00ACF903 /* ContentView.swift in Sources */,
 				0D863C0F21AEB9A900ACF903 /* Entity.swift in Sources */,
 				0D4218BE21B44665005BD3DB /* BushEntity.swift in Sources */,

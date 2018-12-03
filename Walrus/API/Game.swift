@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class Game {
+class Game: Interface {
 
     let level: Level
     let contentView: ContentView
@@ -28,6 +28,12 @@ class Game {
 
     let player: PlayerEntity
 
+    required convenience init(contentView: ContentView) {
+        let settings = GeneratorSettings()
+        let level = Level.generate(withSettings: settings)
+        self.init(level: level, contentView: contentView)
+    }
+
     init(level: Level, contentView: ContentView) {
         self.level = level
         self.contentView = contentView
@@ -40,6 +46,7 @@ class Game {
 
         self.tick()
         self.render()
+        self.start()
     }
 
     func start() {
@@ -92,6 +99,10 @@ class Game {
             self.keysDown.remove(at: index)
         }
     }
+
+    func mouseMoved(event: NSEvent) {}
+    func mouseDown(event: NSEvent) {}
+    func mouseUp(event: NSEvent) {}
 
     func tick() {
         if self.lastTick >= 0 {
@@ -191,7 +202,7 @@ class Game {
     }
 
     func paint() {
-        if self.painting {
+        if self.painting || self.pendingPaint.isEmpty {
             return
         }
 
